@@ -1,0 +1,28 @@
+package com.notfound.crm.common.base;
+
+/**
+ * @author Wan_JiaLin
+ * @Create 2021-04-30 10:15
+ * @Description:  枚举各种情况下的业务码和业务信息
+ */
+public enum CodeMsg {
+    SUCCESS(200, "请求成功！"),
+    ERROR(110, "请求失败！"),
+    LOGIN_FAILD_WRONG_USERNAME(110404, "账户不存在"),
+    LOGIN_FAILD_WRONG_PASSWORD(110404, "密码错误");
+
+    /**
+     * 业务码
+     */
+    public Integer CODE;
+    /**
+     *  业务信息
+     */
+    public String MSG;
+
+    CodeMsg(Integer code, String msg){
+        this.CODE = code;
+        this.MSG = msg;
+    }
+
+}
