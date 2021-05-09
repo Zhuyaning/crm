@@ -19,4 +19,13 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/sys/login"/>
+            <bean class="com.notfound.crm.sys.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
