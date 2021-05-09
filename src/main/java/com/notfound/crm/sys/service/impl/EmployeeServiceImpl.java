@@ -33,6 +33,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
      * @param employeeForm
      * @return
      */
+    @Override
     public Result login(EmployeeForm employeeForm, HttpServletRequest request){
         EmployeeVO data = employeeMapper.login(employeeForm);
         if(data == null){   //查询记过如果为空，则该用户名错误
@@ -50,5 +51,19 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
                 return new Result(CodeMsg.LOGIN_FAILD_WRONG_PASSWORD); //登录失败，密码错误
             }
         }
+    }
+
+    @Override
+    public Result updateByPrimaryKeySelective(EmployeeVO employeeVO){
+
+        employeeMapper.updateByPrimaryKeySelective(employeeVO);
+
+        return new Result();
+    }
+
+    @Override
+    public Result deleteByIdList(Integer[] ids) {
+        employeeMapper.deleteByIdList(ids);
+        return null;
     }
 }

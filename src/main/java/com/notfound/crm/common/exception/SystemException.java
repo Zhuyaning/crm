@@ -6,7 +6,7 @@ package com.notfound.crm.common.exception;
  * 1.数据校验不通过时
  * 2.当数据操作出现异常时，抛出异常信息，数据回滚
  */
-public class BussiException extends RuntimeException {
+public class SystemException extends RuntimeException {
 
     /**
      * 异常编码
@@ -17,9 +17,9 @@ public class BussiException extends RuntimeException {
      */
     private String msg;
 
-    public BussiException(){}
+    public SystemException(){}
 
-    public BussiException(Integer code, String msg){
+    public SystemException(Integer code, String msg){
         this.code = code;
         this.msg = msg;
     }

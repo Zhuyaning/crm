@@ -1,14 +1,18 @@
 package com.notfound.crm.common.validator;
 
-
 import com.notfound.crm.common.base.Constant;
-import com.notfound.crm.common.exception.BussiException;
+import com.notfound.crm.common.exception.SystemException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
 
+/**
+ * @author Wan_JiaLin
+ * @Create 2021-05-8 16:09
+ * @Description: 这里是对字段进行校验的校验器工具类
+ */
 public class ValidatorUtil {
 
     static final Validator validator;
@@ -27,7 +31,7 @@ public class ValidatorUtil {
             String message = constraintViolation.getMessage();
             //校验不通过时抛出异常
             System.out.println(message);
-            throw new BussiException(Constant.FORM_DATA_CHECK_ERROR_CODE, message);
+            throw new SystemException(Constant.FORM_DATA_CHECK_ERROR_CODE, message);
         }
     }
 }

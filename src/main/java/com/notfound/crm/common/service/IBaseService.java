@@ -22,21 +22,21 @@ public interface IBaseService<F> {
      * @param id
      * @return
      */
-    Result delete(Long id);
+    Result delete(Integer id);
 
     /**
      * 更新一条数据
      * @param f
      * @return
      */
-    Result Update(F f);
+    Result update(F f);
 
     /**
      * 根据id查询一条数据
      * @param id
      * @return
      */
-    Result query(Long id);
+    Result query(String id);
 
     /**
      * 根据条件查询数据

@@ -46,6 +46,15 @@
     where id = #{id}
   </delete>
 
+  <!--根据id删除数据-->
+  <delete id="deleteByIdList">
+    delete from employee
+    where id in
+    <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+    #{id}
+    </foreach>
+  </delete>
+
   <!--批量插入-->
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Employee" useGeneratedKeys="true">
     insert into employee (`name`, `password`, email,
