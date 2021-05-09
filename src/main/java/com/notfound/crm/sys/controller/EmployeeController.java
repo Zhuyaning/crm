@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Wan_JiaLin
  * @Create 2021-04-30 10:09
@@ -22,9 +24,9 @@ public class EmployeeController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Result login(EmployeeForm employeeForm){
+    public Result login(EmployeeForm employeeForm, HttpServletRequest request){
 
-        Result result = employeeServiceImpl.login(employeeForm);
+        Result result = employeeServiceImpl.login(employeeForm, request);
 
         return result;
     }
