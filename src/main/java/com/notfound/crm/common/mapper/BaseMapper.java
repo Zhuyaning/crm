@@ -23,7 +23,7 @@ public interface BaseMapper<F,V> {
      * @param id
      * @return
      */
-    int delete(Long id);
+    int delete(Integer id);
 
     /**
      * 修改信息
@@ -37,7 +37,7 @@ public interface BaseMapper<F,V> {
      * @param id
      * @return
      */
-    V selectOne(Long id);
+    V selectOne(String id);
 
     /**
      * 查询数据列表

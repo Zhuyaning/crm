@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.notfound.crm.sys.mapper.PotentialcustomerMapper">
+  <resultMap id="BaseResultMap" type="com.notfound.crm.sys.domain.Potentialcustomer">
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="age" property="age" />
+    <result column="gender" property="gender" />
+    <result column="tel" property="tel" />
+    <result column="qq" property="qq" />
+    <result column="job" property="job" />
+    <result column="source" property="source" />
+    <result column="seller" property="seller" />
+    <result column="inputUser" property="inputuser" />
+    <result column="inputTime" property="inputtime" />
+    <result column="status" property="status" />
+    <result column="positiveTime" property="positivetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, age, gender, tel, qq, job, `source`, seller, inputUser, inputTime, `status`, 
+    positiveTime
+  </sql>
+  <select id="selectOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from potentialcustomer
+    where id = #{id}
+  </select>
+  <delete id="delete">
+    delete from potentialcustomer
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Potentialcustomer" useGeneratedKeys="true">
+    insert into potentialcustomer (`name`, age, gender, tel, qq, job, `source`, seller, 
+      inputUser, inputTime, `status`, positiveTime)
+    values (#{name}, #{age}, #{gender}, #{tel}, #{qq}, #{job}, #{source}, #{seller}, 
+      #{inputuser}, #{inputtime}, #{status}, #{positivetime})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Potentialcustomer" useGeneratedKeys="true">
+    insert into potentialcustomer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="seller != null">
+        seller,
+      </if>
+      <if test="inputuser != null">
+        inputUser,
+      </if>
+      <if test="inputtime != null">
+        inputTime,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="positivetime != null">
+        positiveTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name},
+      </if>
+      <if test="age != null">
+        #{age},
+      </if>
+      <if test="gender != null">
+        #{gender},
+      </if>
+      <if test="tel != null">
+        #{tel},
+      </if>
+      <if test="qq != null">
+        #{qq},
+      </if>
+      <if test="job != null">
+        #{job},
+      </if>
+      <if test="source != null">
+        #{source},
+      </if>
+      <if test="seller != null">
+        #{seller},
+      </if>
+      <if test="inputuser != null">
+        #{inputuser},
+      </if>
+      <if test="inputtime != null">
+        #{inputtime},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="positivetime != null">
+        #{positivetime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective">
+    update potentialcustomer
+    <set>
+      <if test="name != null">
+        `name` = #{name},
+      </if>
+      <if test="age != null">
+        age = #{age},
+      </if>
+      <if test="gender != null">
+        gender = #{gender},
+      </if>
+      <if test="tel != null">
+        tel = #{tel},
+      </if>
+      <if test="qq != null">
+        qq = #{qq},
+      </if>
+      <if test="job != null">
+        job = #{job},
+      </if>
+      <if test="source != null">
+        `source` = #{source},
+      </if>
+      <if test="seller != null">
+        seller = #{seller},
+      </if>
+      <if test="inputuser != null">
+        inputUser = #{inputuser},
+      </if>
+      <if test="inputtime != null">
+        inputTime = #{inputtime},
+      </if>
+      <if test="status != null">
+        `status` = #{status},
+      </if>
+      <if test="positivetime != null">
+        positiveTime = #{positivetime},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="update">
+    update potentialcustomer
+    set `name` = #{name},
+      age = #{age},
+      gender = #{gender},
+      tel = #{tel},
+      qq = #{qq},
+      job = #{job},
+      `source` = #{source},
+      seller = #{seller},
+      inputUser = #{inputuser},
+      inputTime = #{inputtime},
+      `status` = #{status},
+      positiveTime = #{positivetime}
+    where id = #{id}
+  </update>
+</mapper>

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Wan_JiaLin
  * @Create 2021-05-02 15:08
- * @Description:
+ * @Description: 服务层基类，实现了增加新数据，根据id删除数据，更新数据根据id查询数据，分页模糊查询等方法
  */
 public class BaseServiceImpl<F> implements IBaseService<F> {
 
@@ -28,19 +28,19 @@ public class BaseServiceImpl<F> implements IBaseService<F> {
     }
 
     @Override
-    public Result delete(Long id) {
+    public Result delete(Integer id) {
         baseMapper.delete(id);
         return new Result();
     }
 
     @Override
-    public Result Update(F f) {
+    public Result update(F f) {
         baseMapper.update(f);
         return new Result();
     }
 
     @Override
-    public Result query(Long id) {
+    public Result query(String id) {
         Object data = baseMapper.selectOne(id);
 
         return new Result(data);
@@ -52,7 +52,7 @@ public class BaseServiceImpl<F> implements IBaseService<F> {
 
         List list = baseMapper.selectList(query);
 
-        PageInfo pageData = new PageInfo(data.getPageNum(), data.getPageSize(), data.getTotal(), list);
+        PageInfo pageData = new PageInfo(data.getPageNum(), data.getPageSize(), data.getTotal(), data.getResult());
 
         return new Result(pageData);
     }

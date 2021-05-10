@@ -2,6 +2,11 @@ package com.notfound.crm.sys.domain;
 
 import java.util.Date;
 
+/**
+ * @author Wan_JiaLin
+ * @Create 2021-05-08 15:28
+ * @Description: employee员工实体类
+ */
 public class Employee {
     /**
      * ID

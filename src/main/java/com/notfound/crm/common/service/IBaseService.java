@@ -6,7 +6,7 @@ import com.notfound.crm.common.base.Result;
 /**
  * @author Wan_JiaLin
  * @Create 2021-04-30 10:14
- * @Description:
+ * @Description: service层基础接口
  */
 public interface IBaseService<F> {
 
@@ -22,21 +22,21 @@ public interface IBaseService<F> {
      * @param id
      * @return
      */
-    Result delete(Long id);
+    Result delete(Integer id);
 
     /**
      * 更新一条数据
      * @param f
      * @return
      */
-    Result Update(F f);
+    Result update(F f);
 
     /**
      * 根据id查询一条数据
      * @param id
      * @return
      */
-    Result query(Long id);
+    Result query(String id);
 
     /**
      * 根据条件查询数据
