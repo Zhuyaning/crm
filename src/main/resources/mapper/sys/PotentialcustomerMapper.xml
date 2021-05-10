@@ -20,22 +20,34 @@
     id, `name`, age, gender, tel, qq, job, `source`, seller, inputUser, inputTime, `status`, 
     positiveTime
   </sql>
+<!--  根据id查询-->
   <select id="selectOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from potentialcustomer
     where id = #{id}
   </select>
+
+  <!--分页以及模糊查询-->
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from potentialcustomer
+  </select>
+
+<!--  根据id删除-->
   <delete id="delete">
     delete from potentialcustomer
     where id = #{id}
   </delete>
+<!--  插入一条数据-->
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Potentialcustomer" useGeneratedKeys="true">
     insert into potentialcustomer (`name`, age, gender, tel, qq, job, `source`, seller, 
       inputUser, inputTime, `status`, positiveTime)
     values (#{name}, #{age}, #{gender}, #{tel}, #{qq}, #{job}, #{source}, #{seller}, 
       #{inputuser}, #{inputtime}, #{status}, #{positivetime})
   </insert>
+<!--  选择属性插入数据-->
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Potentialcustomer" useGeneratedKeys="true">
     insert into potentialcustomer
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -115,6 +127,7 @@
       </if>
     </trim>
   </insert>
+<!--  选择属性修改数据-->
   <update id="updateByPrimaryKeySelective">
     update potentialcustomer
     <set>
@@ -157,6 +170,7 @@
     </set>
     where id = #{id}
   </update>
+<!--  根据id修改数据-->
   <update id="update">
     update potentialcustomer
     set `name` = #{name},
