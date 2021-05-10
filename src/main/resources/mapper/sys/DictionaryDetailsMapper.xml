@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.notfound.crm.sys.mapper.DictionaryDetailsMapper">
+    <resultMap id="BaseDicDetMap" type="com.notfound.crm.sys.vo.DictionaryDetailsVO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="parent" jdbcType="VARCHAR" property="parent"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="sequence" jdbcType="VARCHAR" property="sequence"/>
+        <result column="c_id" property="dictionaryContents.id"/>
+        <result column="c_sn" property="dictionaryContents.sn"/>
+        <result column="c_title" property="dictionaryContents.title"/>
+        <result column="c_intro" property="dictionaryContents.intro"/>
+    </resultMap>
+    <select id="selectList" resultMap="BaseDicDetMap">
+        select title,sequence
+        from systemdictionaryitem
+        <where>
+            <if test="keyword != null and keyword !=''">
+                title LIKE concat('%',#{keyword},'%') or sequence Like concat('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectDicConTitle" resultMap="BaseDicDetMap">
+        select title from systemdictionary
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into  systemdictionaryitem(title,sequence)
+        values (#{title},#{sequence})
+    </insert>
+
+    <update id="update" parameterType="com.notfound.crm.sys.domain.DictionaryDetails">
+        update systemdictionaryitem
+        <set>
+            <if test="title != null and title !=''">
+                title =#{title},
+            </if>
+            <if test="sequence !=null and sequence !=''">
+                sequence =#{sequence}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete * from systemdictionaryitem where id=#{id}
+    </delete>
+</mapper>
