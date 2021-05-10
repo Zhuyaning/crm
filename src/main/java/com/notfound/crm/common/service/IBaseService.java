@@ -6,7 +6,7 @@ import com.notfound.crm.common.base.Result;
 /**
  * @author Wan_JiaLin
  * @Create 2021-04-30 10:14
- * @Description:
+ * @Description: service层基础接口
  */
 public interface IBaseService<F> {
 

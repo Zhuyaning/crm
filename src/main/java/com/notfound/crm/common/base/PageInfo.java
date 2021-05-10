@@ -2,6 +2,11 @@ package com.notfound.crm.common.base;
 
 import java.util.List;
 
+/**
+ * @author Wan_JiaLin
+ * @Create 2021-04-30 14:30
+ * @Description: 分页信息包装类
+ */
 public class PageInfo {
 
     /**

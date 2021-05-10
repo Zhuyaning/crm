@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Wan_JiaLin
  * @Create 2021-05-02 15:08
- * @Description:
+ * @Description: 服务层基类，实现了增加新数据，根据id删除数据，更新数据根据id查询数据，分页模糊查询等方法
  */
 public class BaseServiceImpl<F> implements IBaseService<F> {
 

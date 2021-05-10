@@ -10,5 +10,4 @@ import com.notfound.crm.sys.domain.Potentialcustomer;
  */
 
 public class PotentialcustomerVO extends Potentialcustomer {
-
 }
