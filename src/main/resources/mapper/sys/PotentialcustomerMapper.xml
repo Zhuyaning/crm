@@ -34,11 +34,11 @@
     <include refid="Base_Column_List" />
     from potentialcustomer
     <where>
-            <if test="keyword != null and keyword != ''">
-                name like concat('%',#{keyword},'%')
+            <if test="type != null">
+                (status = #{type})
             </if>
             <if test="keyword != null and keyword != ''">
-                or tel like concat('%',#{keyword},'%')
+              and  (name like concat('%',#{keyword},'%') or tel like concat('%',#{keyword},'%'))
             </if>
     </where>
   </select>
