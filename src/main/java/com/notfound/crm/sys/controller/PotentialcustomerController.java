@@ -20,11 +20,27 @@ public class PotentialcustomerController {
   @Autowired
   IPotentialcustomerService iPotentialcustomerService;
 
+  /***
+   * 根据关键字查询客户信息，实现分页。
+   * @param query
+   * @return
+   */
   @RequestMapping("/queryPage")
   public Result queryPage(Query query){
 
     Result result = iPotentialcustomerService.queryPage(query);
-
     return result;
   }
+
+  /***
+   * 根据id删除
+   * @param id
+   * @return
+   */
+  @RequestMapping("/delete")
+  public Result deleteById(Integer id){
+    Result result = iPotentialcustomerService.delete(id);
+    return result;
+  }
+
 }
