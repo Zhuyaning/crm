@@ -172,4 +172,23 @@ public class Potentialcustomer {
     public void setPositivetime(Date positivetime) {
         this.positivetime = positivetime;
     }
+
+    @Override
+    public String toString() {
+        return "Potentialcustomer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", tel='" + tel + '\'' +
+                ", qq='" + qq + '\'' +
+                ", job='" + job + '\'' +
+                ", source='" + source + '\'' +
+                ", seller='" + seller + '\'' +
+                ", inputuser='" + inputuser + '\'' +
+                ", inputtime=" + inputtime +
+                ", status=" + status +
+                ", positivetime=" + positivetime +
+                '}';
+    }
 }

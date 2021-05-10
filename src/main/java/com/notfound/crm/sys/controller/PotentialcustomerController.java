@@ -29,7 +29,6 @@ public class PotentialcustomerController {
      */
     @RequestMapping("/queryPage")
     public Result queryPage(Query query){
-
         Result result = iPotentialcustomerService.queryPage(query);
         return result;
     }

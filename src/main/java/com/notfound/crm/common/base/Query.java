@@ -7,13 +7,13 @@ package com.notfound.crm.common.base;
  */
 public class Query {
     /**
-     * 当前页码
+     * 当前页码，默认为1
      */
-    private Integer currentPage;
+    private Integer currentPage = 1;
     /**
-     * 每页显示条数
+     * 每页显示条数，默认为10
      */
-    private Integer pageSize;
+    private Integer pageSize = 10;
     /**
      * 从那一条数据开始查询
      */
@@ -34,7 +34,11 @@ public class Query {
     }
 
     public void setCurrentPage(Integer currentPage) {
-        this.currentPage = currentPage;
+        if(currentPage<=0){
+            this.currentPage = 1;
+        }else {
+            this.currentPage = currentPage;
+        }
     }
 
     public Integer getPageSize() {
@@ -42,7 +46,11 @@ public class Query {
     }
 
     public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+        if(pageSize<=0){
+            this.pageSize = 5;
+        }else {
+            this.pageSize = pageSize;
+        }
     }
 
     public Integer getStart() {
