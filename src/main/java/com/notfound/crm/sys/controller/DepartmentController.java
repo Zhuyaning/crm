@@ -46,4 +46,17 @@ public class DepartmentController {
         return delete;
     }
 
+    @RequestMapping("/update")
+    @ResponseBody
+    public Result update(DepartmentForm departmentForm){
+        Result update = departmentService.update(departmentForm);
+        return update;
+    }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public Result inserte(DepartmentForm departmentForm){
+        Result add = departmentService.add(departmentForm);
+        return add;
+    }
 }
