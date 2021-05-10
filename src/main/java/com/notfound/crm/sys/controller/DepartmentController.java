@@ -3,6 +3,7 @@ package com.notfound.crm.sys.controller;
 
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
+import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.domain.Department;
 import com.notfound.crm.sys.form.DepartmentForm;
 import com.notfound.crm.sys.service.IDepartmentService;
@@ -49,6 +50,8 @@ public class DepartmentController {
     @RequestMapping("/update")
     @ResponseBody
     public Result update(DepartmentForm departmentForm){
+        System.out.println(departmentForm);
+        ValidatorUtil.validator(departmentForm);//验证
         Result update = departmentService.update(departmentForm);
         return update;
     }
