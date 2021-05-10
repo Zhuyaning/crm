@@ -34,7 +34,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
      * @return
      */
     @Override
-    public Result login(EmployeeForm employeeForm, HttpServletRequest request){
+    public Result login(EmployeeForm employeeForm, String securityCode, HttpServletRequest request){
         EmployeeVO data = employeeMapper.login(employeeForm);
         if(data == null){   //查询记过如果为空，则该用户名错误
             return new Result(CodeMsg.LOGIN_FAILD_WRONG_USERNAME);    //登录失败，用户名错误
@@ -44,9 +44,15 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
                 request.getSession().setAttribute("CURR_USER",data);
                 System.out.println("在此取出存入的session内容"+request.getSession().getAttribute("CURR_USER"));
                 EmployeeVO curr_user = (EmployeeVO) request.getSession().getAttribute("CURR_USER");
+                String authCode = (String) request.getSession().getAttribute("SecurityCode");
 
-                System.out.println(curr_user.getName());
-                return new Result();    //登录成功
+                //校验用户填写的验证码是否正确
+                System.out.println("Session中的验证码："+authCode);
+                if(securityCode.equals(authCode)){
+                    return new Result();    //登录成功
+                }else {
+                    return new Result(CodeMsg.LOGIN_FAILD_WRONG_AUTHCODE);
+                }
             }else {
                 return new Result(CodeMsg.LOGIN_FAILD_WRONG_PASSWORD); //登录失败，密码错误
             }
