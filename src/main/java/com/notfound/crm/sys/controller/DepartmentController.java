@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Parameter;
+
 import java.util.List;
 
 /**
@@ -59,6 +59,7 @@ public class DepartmentController {
     @RequestMapping("/insert")
     @ResponseBody
     public Result inserte(DepartmentForm departmentForm){
+        ValidatorUtil.validator(departmentForm);//验证
         Result add = departmentService.add(departmentForm);
         return add;
     }

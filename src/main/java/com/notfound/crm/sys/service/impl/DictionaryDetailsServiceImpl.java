@@ -1,5 +1,6 @@
 package com.notfound.crm.sys.service.impl;
 
+import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.mapper.BaseMapper;
 import com.notfound.crm.common.service.impl.BaseServiceImpl;
@@ -9,6 +10,8 @@ import com.notfound.crm.sys.service.IDictionaryDetailsService;
 import com.notfound.crm.sys.vo.DictionaryDetailsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Zheng_xiaolong
@@ -26,8 +29,8 @@ public class DictionaryDetailsServiceImpl extends BaseServiceImpl<DictionaryDeta
     }
 
     @Override
-    public Result selectDicConTitle(DictionaryDetailsVO dictionaryDetailsVO) {
-        dictionaryDetailsMapper.selectDicConTitle(dictionaryDetailsVO);
-        return new Result();
+    public List<DictionaryDetailsVO> selectDicConTitle(Query query) {
+
+        return dictionaryDetailsMapper.selectDicConTitle(query);
     }
 }

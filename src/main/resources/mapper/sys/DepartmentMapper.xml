@@ -7,7 +7,7 @@
     </insert>
 
     <delete id="delete" parameterType="java.lang.Integer">
-        delete from department where id=#{id};
+        delete from department where id=#{id}
     </delete>
 
     <update id="update" parameterType="com.notfound.crm.sys.domain.Department">
@@ -20,7 +20,7 @@
                 name =#{name}
             </if>
         </set>
-        where id = #{id};
+        where id = #{id}
     </update>
 
     <resultMap id="BaseDepartmentMap" type="com.notfound.crm.sys.vo.DepartmentVO">
@@ -31,6 +31,6 @@
 
     <select id="selectList" resultMap="BaseDepartmentMap">
         select id,sn,name
-        from department;
+        from department
     </select>
 </mapper>
