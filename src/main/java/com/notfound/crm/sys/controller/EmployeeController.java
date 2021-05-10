@@ -4,6 +4,7 @@ import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.EmployeeForm;
+import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.service.impl.EmployeeServiceImpl;
 import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,14 @@ import java.util.Arrays;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeServiceImpl employeeServiceImpl;
+    private IEmployeeService employeeService;
 
     @RequestMapping("/login")
     @ResponseBody
     //http://localhost:8888/sys/login
     public Result login(EmployeeForm employeeForm, HttpServletRequest request){
 
-        Result result = employeeServiceImpl.login(employeeForm, request);
+        Result result = employeeService.login(employeeForm, request);
         return result;
     }
 
@@ -59,7 +60,7 @@ public class EmployeeController {
     //http://localhost:8888/sys/queryPage
     public Result queryPage(Query query){
 
-        Result result = employeeServiceImpl.queryPage(query);
+        Result result = employeeService.queryPage(query);
         return result;
     }
 
@@ -69,7 +70,7 @@ public class EmployeeController {
     public Result addEmployee(EmployeeForm employeeForm){
         ValidatorUtil.validator(employeeForm);  //验证前端传入的数据
 
-        Result result = employeeServiceImpl.add(employeeForm);
+        Result result = employeeService.add(employeeForm);
         return result;
     }
 
@@ -78,7 +79,7 @@ public class EmployeeController {
     //http://localhost:8888/sys/deleteByEmployeeId
     public Result deleteByEmployeeId(Integer id){
 
-        Result result = employeeServiceImpl.delete(id);
+        Result result = employeeService.delete(id);
         return result;
     }
 
@@ -87,7 +88,7 @@ public class EmployeeController {
     //http://localhost:8888/sys/deleteByEmployeeIdList
     public Result deleteByEmployeeIdList(Integer[] ids){
         System.out.println(Arrays.toString(ids));
-        Result result = employeeServiceImpl.deleteByIdList(ids);
+        Result result = employeeService.deleteByIdList(ids);
         return result;
     }
 
@@ -97,7 +98,7 @@ public class EmployeeController {
     public Result updateEmployee(EmployeeVO employeeVO){
         System.out.println(employeeVO);
         ValidatorUtil.validator(employeeVO);
-        Result result = employeeServiceImpl.updateByPrimaryKeySelective(employeeVO);
+        Result result = employeeService.updateByPrimaryKeySelective(employeeVO);
         return result;
     }
 
