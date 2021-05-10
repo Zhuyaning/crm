@@ -12,13 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Parameter;
-import java.util.List;
+
 
 /**
  * @author Zheng_xiaolong
@@ -31,15 +28,20 @@ public class DepartmentController {
     @Autowired
     private IDepartmentService departmentService;
 
-    @RequestMapping("list")
-    public Result first(HttpServletRequest req, HttpServletResponse resp){
-        Query query = new Query();
-        String currentPage = req.getParameter("currentPage");
-        String pageSize = req.getParameter("pageSize");
-        query.setCurrentPage(Integer.valueOf(currentPage));
-        query.setPageSize(Integer.valueOf(pageSize));
+    @RequestMapping("/list")
+    @ResponseBody
+    public Result first(Query query){
         Result list = departmentService.queryPage(query);
         return list;
+    }
+
+
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result delete(Long id){
+        Result delete = departmentService.delete(id);
+        return delete;
     }
 
 
