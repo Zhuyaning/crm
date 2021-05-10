@@ -66,4 +66,15 @@ public class PageInfo {
     public void setData(List<Object> data) {
         this.data = data;
     }
+
+
+    @Override
+    public String toString() {
+        return "PageInfo{" +
+                "page=" + page +
+                ", limit=" + limit +
+                ", count=" + count +
+                ", data=" + data +
+                '}';
+    }
 }
