@@ -19,7 +19,7 @@ public interface IEmployeeService extends IBaseService<EmployeeForm>{
      * @param request
      * @return
      */
-    Result login(EmployeeForm employeeForm, HttpServletRequest request);
+    Result login(EmployeeForm employeeForm,String securityCode, HttpServletRequest request);
 
     /**
      * 选择更新接口

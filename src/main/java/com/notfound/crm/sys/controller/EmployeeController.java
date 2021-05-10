@@ -27,14 +27,14 @@ import java.util.Arrays;
 public class EmployeeController {
 
     @Autowired
-    private IEmployeeService employeeService;
+    private IEmployeeService employeeServiceImpl;
 
     @RequestMapping("/login")
     @ResponseBody
     //http://localhost:8888/sys/login
-    public Result login(EmployeeForm employeeForm, HttpServletRequest request){
+    public Result login(EmployeeForm employeeForm, String securityCode, HttpServletRequest request){
 
-        Result result = employeeService.login(employeeForm, request);
+        Result result = employeeServiceImpl.login(employeeForm, securityCode, request);
         return result;
     }
 
@@ -60,7 +60,7 @@ public class EmployeeController {
     //http://localhost:8888/sys/queryPage
     public Result queryPage(Query query){
 
-        Result result = employeeService.queryPage(query);
+        Result result = employeeServiceImpl.queryPage(query);
         return result;
     }
 
@@ -70,7 +70,7 @@ public class EmployeeController {
     public Result addEmployee(EmployeeForm employeeForm){
         ValidatorUtil.validator(employeeForm);  //验证前端传入的数据
 
-        Result result = employeeService.add(employeeForm);
+        Result result = employeeServiceImpl.add(employeeForm);
         return result;
     }
 
@@ -79,7 +79,7 @@ public class EmployeeController {
     //http://localhost:8888/sys/deleteByEmployeeId
     public Result deleteByEmployeeId(Integer id){
 
-        Result result = employeeService.delete(id);
+        Result result = employeeServiceImpl.delete(id);
         return result;
     }
 
@@ -88,7 +88,7 @@ public class EmployeeController {
     //http://localhost:8888/sys/deleteByEmployeeIdList
     public Result deleteByEmployeeIdList(Integer[] ids){
         System.out.println(Arrays.toString(ids));
-        Result result = employeeService.deleteByIdList(ids);
+        Result result = employeeServiceImpl.deleteByIdList(ids);
         return result;
     }
 
@@ -98,7 +98,7 @@ public class EmployeeController {
     public Result updateEmployee(EmployeeVO employeeVO){
         System.out.println(employeeVO);
         ValidatorUtil.validator(employeeVO);
-        Result result = employeeService.updateByPrimaryKeySelective(employeeVO);
+        Result result = employeeServiceImpl.updateByPrimaryKeySelective(employeeVO);
         return result;
     }
 
