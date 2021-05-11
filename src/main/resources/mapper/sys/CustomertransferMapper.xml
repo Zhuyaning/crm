@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.notfound.crm.sys.mapper.CustomertransferMapper">
+    
+<!--    <resultMap id="BasCusMap" type="com.notfound.crm.sys.vo.CustomertransferVO">-->
+<!--        <id column="id" property="id"/>-->
+<!--        <result column=""-->
+<!--    </resultMap>-->
+    <select id="selectList" resultType="com.notfound.crm.sys.domain.Customertransfer">
+        select c.id,p.name as p_name,e.name as e_name,c.transTime,c.oldSeller,
+               c.newSeller,c.transReason
+        from customertransfer as c inner join employee as e inner join potentialcustomer as p
+        <where>
+            <if test="keyword != null and keyword !=''">
+                p.name LIKE concat('%',#{keyword},'%')
+            </if>
+        </where>
+        order by c.transTime;
+    </select>
+
+
+</mapper>
