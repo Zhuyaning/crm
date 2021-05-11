@@ -37,7 +37,7 @@ public interface BaseMapper<F,V> {
      * @param id
      * @return
      */
-    V selectOne(String id);
+    V selectOne(Integer id);
 
     /**
      * 查询数据列表

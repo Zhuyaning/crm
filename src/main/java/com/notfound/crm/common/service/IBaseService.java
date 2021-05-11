@@ -36,7 +36,7 @@ public interface IBaseService<F> {
      * @param id
      * @return
      */
-    Result query(String id);
+    Result query(Integer id);
 
     /**
      * 根据条件查询数据

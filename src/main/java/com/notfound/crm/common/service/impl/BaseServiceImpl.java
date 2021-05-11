@@ -40,7 +40,7 @@ public class BaseServiceImpl<F> implements IBaseService<F> {
     }
 
     @Override
-    public Result query(String id) {
+    public Result query(Integer id) {
         Object data = baseMapper.selectOne(id);
 
         return new Result(data);

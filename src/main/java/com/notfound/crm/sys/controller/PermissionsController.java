@@ -34,7 +34,7 @@ public class PermissionsController {
     //根据id查询权限信息
     @RequestMapping("/queryPermissions")
     @ResponseBody
-    public Result query(String id){
+    public Result query(Integer id){
 
         ValidatorUtil.validator(id);
         Result result = permissionsService.query(id);

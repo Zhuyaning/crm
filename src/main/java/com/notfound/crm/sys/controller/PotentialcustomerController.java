@@ -69,4 +69,9 @@ public class PotentialcustomerController {
         return result;
     }
 
+    @RequestMapping("/queryOne")
+    public Result queryOne(Integer id){
+        Result result = iPotentialcustomerService.query(id);
+        return result;
+    }
 }
