@@ -12,8 +12,8 @@
         <result column="c_intro" property="dictionaryContents.intro"/>
     </resultMap>
     <select id="selectList" resultMap="BaseDicDetMap">
-        select title,sequence
-        from systemdictionaryitem
+        select c.id,c.parent,c.title,c.sequence,d.id as d_id,d.sn,d.title as d_title
+        from systemdictionaryitem as c inner join systemdictionary as d on c.parent = d.sn
         <where>
             <if test="keyword != null and keyword !=''">
                 title LIKE concat('%',#{keyword},'%') or sequence Like concat('%',#{keyword},'%')
