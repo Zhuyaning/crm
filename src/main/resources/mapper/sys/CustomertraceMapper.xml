@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.notfound.crm.sys.mapper.CustomertraceMapper">
-  <resultMap id="BaseResultMap" type="com.notfound.crm.sys.domain.Customertrace">
+  <resultMap id="BaseResultMap" type="com.notfound.crm.sys.vo.CustomertraceVO">
     <!--@mbg.generated-->
     <!--@Table customertrace-->
-    <id column="id" property="id" />
+    <result column="c_id" property="id"/>
     <result column="traceITime" property="traceitime" />
     <result column="traceDetails" property="tracedetails" />
     <result column="traceType" property="tracetype" />
     <result column="traceResult" property="traceresult" />
     <result column="customerID" property="customerid" />
-    <result column="inputUser" property="inputuser" />
+    <result column="c_inputUser" property="inputuser" />
     <result column="type" property="type" />
+
+    <result column="p_id" property="potentialcustomer.id"/>
+    <result column="name" property="potentialcustomer.name"/>
+    <result column="age" property="potentialcustomer.age"/>
+    <result column="gender" property="potentialcustomer.gender"/>
+    <result column="tel" property="potentialcustomer.tel"/>
+    <result column="qq" property="potentialcustomer.qq"/>
+    <result column="job" property="potentialcustomer.job"/>
+    <result column="source" property="potentialcustomer.source"/>
+    <result column="seller" property="potentialcustomer.seller"/>
+    <result column="p_inputUser" property="potentialcustomer.inputuser"/>
+    <result column="inputTime" property="potentialcustomer.inputtime"/>
+    <result column="status" property="potentialcustomer.status"/>
+    <result column="positiveTime" property="potentialcustomer.positivetime"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -19,17 +33,19 @@
   </sql>
   <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from customertrace
-    where id = #{id}
+   select
+     c.id as c_id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser as c_inputUser, c.`type`,
+        p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime
+    from customertrace as c
+    inner join potentialcustomer as p
+    on c.customerID = p.id
   </select>
 
     <!--分页以及模糊查询-->
   <select id="selectList" resultMap="BaseResultMap">
     select
-     c.id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser, c.type,
-        p.name,p.tel
+     c.id as c_id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser as c_inputUser, c.`type`,
+        p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime
     from customertrace as c
     inner join potentialcustomer as p
     on c.customerID = p.id
