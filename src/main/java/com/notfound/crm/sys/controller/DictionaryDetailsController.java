@@ -3,7 +3,6 @@ package com.notfound.crm.sys.controller;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
-import com.notfound.crm.sys.form.DictionaryContentsFrom;
 import com.notfound.crm.sys.form.DictionaryDetailsFrom;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
 import com.notfound.crm.sys.vo.DictionaryDetailsVO;
