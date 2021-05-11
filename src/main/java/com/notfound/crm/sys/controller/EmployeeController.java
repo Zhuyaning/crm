@@ -23,7 +23,7 @@ import java.util.Arrays;
  * @Description: 这里是员工类的controller，端口访问
  */
 @Controller
-@RequestMapping("sys")
+@RequestMapping("/sys")
 public class EmployeeController {
 
     @Autowired

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.notfound.crm.sys.mapper.CustomertraceMapper">
+  <resultMap id="BaseResultMap" type="com.notfound.crm.sys.domain.Customertrace">
+    <!--@mbg.generated-->
+    <!--@Table customertrace-->
+    <id column="id" property="id" />
+    <result column="traceITime" property="traceitime" />
+    <result column="traceDetails" property="tracedetails" />
+    <result column="traceType" property="tracetype" />
+    <result column="traceResult" property="traceresult" />
+    <result column="customerID" property="customerid" />
+    <result column="inputUser" property="inputuser" />
+    <result column="type" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, traceITime, traceDetails, traceType, traceResult, customerID, inputUser, `type`
+  </sql>
+  <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from customertrace
+    where id = #{id}
+  </select>
+
+    <!--分页以及模糊查询-->
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+     c.id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser, c.type,
+        p.name,p.tel
+    from customertrace as c
+    inner join potentialcustomer as p
+    on c.customerID = p.id
+    <where>
+            <if test="type != null">
+                (type = #{type})
+            </if>
+            <if test="keyword != null and keyword != ''">
+              and  (p.name like concat('%',#{keyword},'%') or p.tel like concat('%',#{keyword},'%'))
+            </if>
+    </where>
+  </select>
+
+  <delete id="delete" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from customertrace
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Customertrace" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into customertrace (traceITime, traceDetails, traceType, traceResult, customerID,
+      inputUser, `type`)
+    values (#{traceitime}, #{tracedetails}, #{tracetype}, #{traceresult}, #{customerid},
+      #{inputuser}, #{type})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Customertrace" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into customertrace
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="traceitime != null">
+        traceITime,
+      </if>
+      <if test="tracedetails != null">
+        traceDetails,
+      </if>
+      <if test="tracetype != null">
+        traceType,
+      </if>
+      <if test="traceresult != null">
+        traceResult,
+      </if>
+      <if test="customerid != null">
+        customerID,
+      </if>
+      <if test="inputuser != null">
+        inputUser,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="traceitime != null">
+        #{traceitime},
+      </if>
+      <if test="tracedetails != null">
+        #{tracedetails},
+      </if>
+      <if test="tracetype != null">
+        #{tracetype},
+      </if>
+      <if test="traceresult != null">
+        #{traceresult},
+      </if>
+      <if test="customerid != null">
+        #{customerid},
+      </if>
+      <if test="inputuser != null">
+        #{inputuser},
+      </if>
+      <if test="type != null">
+        #{type},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.notfound.crm.sys.domain.Customertrace">
+    <!--@mbg.generated-->
+    update customertrace
+    <set>
+      <if test="traceitime != null">
+        traceITime = #{traceitime},
+      </if>
+      <if test="tracedetails != null">
+        traceDetails = #{tracedetails},
+      </if>
+      <if test="tracetype != null">
+        traceType = #{tracetype},
+      </if>
+      <if test="traceresult != null">
+        traceResult = #{traceresult},
+      </if>
+      <if test="customerid != null">
+        customerID = #{customerid},
+      </if>
+      <if test="inputuser != null">
+        inputUser = #{inputuser},
+      </if>
+      <if test="type != null">
+        `type` = #{type},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+<!--  <update id="updateByPrimaryKey" parameterType="com.notfound.crm.sys.domain.Customertrace">-->
+<!--    &lt;!&ndash;@mbg.generated&ndash;&gt;-->
+<!--    update customertrace-->
+<!--    set traceITime = #{traceitime},-->
+<!--      traceDetails = #{tracedetails},-->
+<!--      traceType = #{tracetype},-->
+<!--      traceResult = #{traceresult},-->
+<!--      customerID = #{customerid},-->
+<!--      inputUser = #{inputuser},-->
+<!--      `type` = #{type}-->
+<!--    where id = #{id}-->
+<!--  </update>-->
+</mapper>

@@ -6,10 +6,10 @@
         <result column="parent" jdbcType="VARCHAR" property="parent"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="sequence" jdbcType="VARCHAR" property="sequence"/>
-        <result column="c_id" property="dictionaryContents.id"/>
-        <result column="c_sn" property="dictionaryContents.sn"/>
-        <result column="c_title" property="dictionaryContents.title"/>
-        <result column="c_intro" property="dictionaryContents.intro"/>
+<!--        <result column="c_id" property="dictionaryContents.id"/>-->
+<!--        <result column="c_sn" property="dictionaryContents.sn"/>-->
+<!--        <result column="c_title" property="dictionaryContents.title"/>-->
+<!--        <result column="c_intro" property="dictionaryContents.intro"/>-->
     </resultMap>
     <select id="selectList" resultMap="BaseDicDetMap">
         select c.id,c.parent,c.title,c.sequence,d.id as d_id,d.sn as d_sn,d.title as d_title

@@ -1,5 +1,7 @@
 package com.notfound.crm.sys.domain;
 
+import java.util.List;
+
 /**
  * @author Wen
  * @Create 2021-05-10 10:08
@@ -21,7 +23,7 @@ public class Role {
     /**
      * 权限关系连接
      */
-    private String permission;
+    private Permissions permissions;
 
     public Integer getId() {
         return id;
@@ -47,21 +49,11 @@ public class Role {
         this.name = name;
     }
 
-    public String getPermission() {
-        return permission;
+    public Permissions getPermissions() {
+        return permissions;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", sn='" + sn + '\'' +
-                ", name='" + name + '\'' +
-                ", permission='" + permission + '\'' +
-                '}';
+    public void setPermissions(Permissions permissions) {
+        this.permissions = permissions;
     }
 }
