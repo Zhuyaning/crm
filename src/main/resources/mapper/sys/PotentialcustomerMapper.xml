@@ -48,15 +48,15 @@
     delete from potentialcustomer
     where id = #{id}
   </delete>
-<!--  插入一条数据-->
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.vo.PotentialcustomerVO" useGeneratedKeys="true">
-    insert into potentialcustomer (`name`, age, gender, tel, qq, job, `source`, seller, 
-      inputUser, inputTime, `status`, positiveTime)
-    values (#{name}, #{age}, #{gender}, #{tel}, #{qq}, #{job}, #{source}, #{seller}, 
-      #{inputuser}, #{inputtime}, #{status}, #{positivetime})
-  </insert>
+<!--&lt;!&ndash;  插入一条数据&ndash;&gt;-->
+<!--  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.vo.PotentialcustomerVO" useGeneratedKeys="true">-->
+<!--    insert into potentialcustomer (`name`, age, gender, tel, qq, job, `source`, seller, -->
+<!--      inputUser, inputTime, `status`, positiveTime)-->
+<!--    values (#{name}, #{age}, #{gender}, #{tel}, #{qq}, #{job}, #{source}, #{seller}, -->
+<!--      #{inputuser}, #{inputtime}, #{status}, #{positivetime})-->
+<!--  </insert>-->
 <!--  选择属性插入数据-->
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.vo.PotentialcustomerVO" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.vo.PotentialcustomerVO" useGeneratedKeys="true">
     insert into potentialcustomer
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -136,7 +136,7 @@
     </trim>
   </insert>
 <!--  选择属性修改数据-->
-  <update id="updateByPrimaryKeySelective">
+  <update id="update">
     update potentialcustomer
     <set>
       <if test="name != null">
@@ -178,21 +178,21 @@
     </set>
     where id = #{id}
   </update>
-<!--  根据id修改数据-->
-  <update id="update">
-    update potentialcustomer
-    set `name` = #{name},
-      age = #{age},
-      gender = #{gender},
-      tel = #{tel},
-      qq = #{qq},
-      job = #{job},
-      `source` = #{source},
-      seller = #{seller},
-      inputUser = #{inputuser},
-      inputTime = #{inputtime},
-      `status` = #{status},
-      positiveTime = #{positivetime}
-    where id = #{id}
-  </update>
+<!--&lt;!&ndash;  根据id修改数据&ndash;&gt;-->
+<!--  <update id="update">-->
+<!--    update potentialcustomer-->
+<!--    set `name` = #{name},-->
+<!--      age = #{age},-->
+<!--      gender = #{gender},-->
+<!--      tel = #{tel},-->
+<!--      qq = #{qq},-->
+<!--      job = #{job},-->
+<!--      `source` = #{source},-->
+<!--      seller = #{seller},-->
+<!--      inputUser = #{inputuser},-->
+<!--      inputTime = #{inputtime},-->
+<!--      `status` = #{status},-->
+<!--      positiveTime = #{positivetime}-->
+<!--    where id = #{id}-->
+<!--  </update>-->
 </mapper>
