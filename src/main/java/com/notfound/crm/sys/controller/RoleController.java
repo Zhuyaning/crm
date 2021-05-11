@@ -34,7 +34,7 @@ public class RoleController {
     //根据id查询角色信息
     @RequestMapping("/queryRole")
     @ResponseBody
-    public Result query(String id){
+    public Result query(Integer id){
 
         ValidatorUtil.validator(id);
         Result result = roleService.query(id);
