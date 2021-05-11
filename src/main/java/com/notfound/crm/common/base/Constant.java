@@ -3,7 +3,7 @@ package com.notfound.crm.common.base;
 /**
  * @author Wan_JiaLin
  * @Create 2021-05-01 10:09
- * @Description: 这里是员工类的controller，端口访问
+ * @Description:
  */
 public interface Constant {
 
