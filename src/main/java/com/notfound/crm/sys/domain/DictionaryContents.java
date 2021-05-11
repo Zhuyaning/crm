@@ -1,5 +1,11 @@
 package com.notfound.crm.sys.domain;
 
+/**
+ * @author Zheng_xiaolong
+ * @Date 2021/5/10 20:08
+ * @Version 1.0
+ * @Description 字典目录实体类
+ */
 public class DictionaryContents {
     private Integer id;     //id
 
