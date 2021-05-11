@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.notfound.crm.sys.mapper.DictionaryContentsMapper">
+    <resultMap id="BaseDicConMap" type="com.notfound.crm.sys.vo.DictionaryContentsVO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="sn" jdbcType="VARCHAR" property="sn"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+    </resultMap>
+
+    <select id="selectList" resultMap="BaseDicConMap">
+        select title,sn,intro
+        from systemdictionary
+        <where>
+            <if test="keyword != null and keyword != ''">
+                title LIKE concat('%',#{keyword},'%') or intro Like concat('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+    
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into systemdictionary (sn,title,intro)
+        values (#{sn},#{title},#{intro})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from systemdictionary where id =#{id}
+    </delete>
+    
+    <update id="update" parameterType="com.notfound.crm.sys.domain.DictionaryContents">
+        update systemdictionary
+        <set>
+            <if test="sn != null and sn !=''">
+                sn = #{sn},
+            </if>
+            <if test="title != null and title !=''">
+                title = #{title},
+            </if>
+            <if test="intro != null and intro!=''">
+                intro = #{intro}
+            </if>
+        </set>
+        where id =#{id}
+    </update>
+</mapper>

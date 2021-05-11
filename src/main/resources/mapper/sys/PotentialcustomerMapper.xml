@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.notfound.crm.sys.mapper.PotentialcustomerMapper">
-  <resultMap id="BaseResultMap" type="com.notfound.crm.sys.domain.Potentialcustomer">
+  <resultMap id="BaseResultMap" type="com.notfound.crm.sys.vo.PotentialcustomerVO">
     <id column="id" property="id" />
     <result column="name" property="name" />
     <result column="age" property="age" />
@@ -49,14 +49,14 @@
     where id = #{id}
   </delete>
 <!--  插入一条数据-->
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Potentialcustomer" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.vo.PotentialcustomerVO" useGeneratedKeys="true">
     insert into potentialcustomer (`name`, age, gender, tel, qq, job, `source`, seller, 
       inputUser, inputTime, `status`, positiveTime)
     values (#{name}, #{age}, #{gender}, #{tel}, #{qq}, #{job}, #{source}, #{seller}, 
       #{inputuser}, #{inputtime}, #{status}, #{positivetime})
   </insert>
 <!--  选择属性插入数据-->
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Potentialcustomer" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.vo.PotentialcustomerVO" useGeneratedKeys="true">
     insert into potentialcustomer
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">

@@ -31,7 +31,7 @@
 
     <mvc:cors>
         <mvc:mapping path="/**"
-                     allowed-origins="http://127.0.0.1:5500"
+                     allowed-origins="*"
                      allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
                      allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
                      allow-credentials="true" />

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  *   Date: 2021/5/10
  *   Time: 11:19
  */
+
 @RestController
 @RequestMapping("customer")
 public class PotentialcustomerController {
@@ -69,4 +70,14 @@ public class PotentialcustomerController {
         return result;
     }
 
+    /***
+     * 单个客户的id查询
+     * @param id
+     * @return
+     */
+    @RequestMapping("/queryOne")
+    public Result queryOne(Integer id){
+        Result result = iPotentialcustomerService.query(id);
+        return result;
+    }
 }

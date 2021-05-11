@@ -47,9 +47,9 @@ public class EmployeeController {
         return new Result();
     }
 
-    @RequestMapping("/testInterceptor")
+    @RequestMapping("/getAuthCode")
     @ResponseBody
-    //http://localhost:8888/sys/testInterceptor
+    //http://localhost:8888/sys/getAuthCode
     public Result testInterceptor(EmployeeForm employeeForm){
         System.out.println("正在测试。。。。。");
         return new Result();
