@@ -16,7 +16,7 @@
             <if test="sn != null and sn !=''">
                 sn = #{sn},
             </if>
-            <if test="name !=null and name !=''">
+            <if test="name != null and name !=''">
                 name =#{name}
             </if>
         </set>

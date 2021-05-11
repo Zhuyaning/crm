@@ -26,10 +26,10 @@
     <update id="update" parameterType="com.notfound.crm.sys.domain.Permissions">
         update permissions
         <set>
-            <if test="name != null &amp;&amp; name != '' ">
+            <if test="name != null and name != '' ">
                 name=#{name},
             </if>
-            <if test="expression != null &amp;&amp; expression != '' ">
+            <if test="expression != null and expression != '' ">
                 expression=#{expression}
             </if>
         </set>
