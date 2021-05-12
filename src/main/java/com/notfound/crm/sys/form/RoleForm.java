@@ -4,9 +4,6 @@ import com.notfound.crm.sys.domain.Permissions;
 import com.notfound.crm.sys.domain.Role;
 import org.hibernate.validator.constraints.NotBlank;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Wen
  * @Create 2021-05-10 10:09
@@ -30,7 +27,7 @@ public class RoleForm extends Role {
     /**
      * 权限关系连接
      */
-    private Permissions permissions;
+    private String permission;
 
     public Integer getId() {
         return id;
@@ -56,11 +53,13 @@ public class RoleForm extends Role {
         this.name = name;
     }
 
-    public Permissions getPermissions() {
-        return permissions;
+    @Override
+    public String getPermission() {
+        return permission;
     }
 
-    public void setPermissions(Permissions permissions) {
-        this.permissions = permissions;
+    @Override
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 }

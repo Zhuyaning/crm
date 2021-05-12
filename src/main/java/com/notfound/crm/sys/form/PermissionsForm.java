@@ -1,7 +1,11 @@
 package com.notfound.crm.sys.form;
 
 import com.notfound.crm.sys.domain.Permissions;
+import com.notfound.crm.sys.domain.Role;
 import org.hibernate.validator.constraints.NotBlank;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Wen
@@ -23,6 +27,11 @@ public class PermissionsForm extends Permissions {
      */
     @NotBlank(message = "权限表达含义不能为空！")
     private String expression;
+
+    /**
+     * 关系连接
+     */
+    private List<Role> roleList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -48,12 +57,11 @@ public class PermissionsForm extends Permissions {
         this.expression = expression;
     }
 
-    @Override
-    public String toString() {
-        return "Permissions{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", expression='" + expression + '\'' +
-                '}';
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 }

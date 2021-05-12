@@ -18,8 +18,6 @@ public class MyInterceptor implements HandlerInterceptor {
         if(request.getSession().getAttribute("CURR_USER") == null){ //验证是否登录，如果为空，则用户未登录
             return false;
         }
-        System.out.println("获取的cookies："+request.getCookies());
-        System.out.println("SessionId的值为:"+request.getSession().getId());
         return true;
     }
 
