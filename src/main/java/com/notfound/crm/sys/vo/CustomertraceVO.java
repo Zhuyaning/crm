@@ -1,6 +1,8 @@
 package com.notfound.crm.sys.vo;
 
+
 import com.notfound.crm.sys.domain.Customertrace;
+import com.notfound.crm.sys.domain.Potentialcustomer;
 
 /***
  *   Created by IntelliJ IDEA.
@@ -10,4 +12,6 @@ import com.notfound.crm.sys.domain.Customertrace;
  */
 
 public class CustomertraceVO extends Customertrace {
+
+    private Potentialcustomer potentialcustomer;
 }
