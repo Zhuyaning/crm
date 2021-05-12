@@ -11,4 +11,5 @@ import com.notfound.crm.sys.vo.CustomertransferVO;
  * @Description 客户移交记录持久层代码
  */
 public interface CustomertransferMapper extends BaseMapper<CustomertransferFrom, CustomertransferVO> {
+
 }

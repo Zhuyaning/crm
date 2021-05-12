@@ -2,11 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.notfound.crm.sys.mapper.CustomertransferMapper">
     
-<!--    <resultMap id="BasCusMap" type="com.notfound.crm.sys.vo.CustomertransferVO">-->
-<!--        <id column="id" property="id"/>-->
-<!--        <result column=""-->
-<!--    </resultMap>-->
-    <select id="selectList" resultType="com.notfound.crm.sys.domain.Customertransfer">
+    <resultMap id="BasCusMap" type="com.notfound.crm.sys.vo.CustomertransferVO">
+        <id column="id" property="id"/>
+        <result column="p_customer" property="customer.name"/>
+        <result column="e_transUser" property="transUser.name"/>
+        <result column="transTime" property="transTime"/>
+        <result column="oldSeller" property="oldSeller"/>
+        <result column="newSeller" property="newSeller"/>
+        <result column="transReason" property="transReason"/>
+    </resultMap>
+    <select id="selectList" resultMap="BasCusMap">
         select c.id,p.name as p_name,e.name as e_name,c.transTime,c.oldSeller,
                c.newSeller,c.transReason
         from customertransfer as c inner join employee as e inner join potentialcustomer as p
@@ -14,9 +19,16 @@
             <if test="keyword != null and keyword !=''">
                 p.name LIKE concat('%',#{keyword},'%')
             </if>
+            <if test="startTime != null">
+                and c.transTime >= #{startTime}
+            </if>
+            <if test="endTime != null">
+               and c.transTime &lt;= #{endTime}
+            </if>
         </where>
-        order by c.transTime;
+        order by c.transTime
     </select>
+
 
 
 </mapper>
