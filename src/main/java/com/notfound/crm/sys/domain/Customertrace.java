@@ -104,10 +104,6 @@ public class Customertrace {
         this.type = type;
     }
 
-    /**
-    * 跟进类型：0 潜在开发计划，1 客户跟进历史
-    */
-
     @Override
     public String toString() {
         return "Customertrace{" +
@@ -118,6 +114,7 @@ public class Customertrace {
                 ", traceresult=" + traceresult +
                 ", customerid=" + customerid +
                 ", inputuser=" + inputuser +
+                ", type=" + type +
                 '}';
     }
 }

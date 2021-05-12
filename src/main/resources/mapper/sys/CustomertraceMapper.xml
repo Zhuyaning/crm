@@ -9,8 +9,6 @@
     <result column="traceDetails" property="tracedetails" />
     <result column="traceType" property="tracetype" />
     <result column="traceResult" property="traceresult" />
-    <result column="customerID" property="customerid" />
-    <result column="c_inputUser" property="inputuser" />
     <result column="type" property="type" />
 
     <result column="p_id" property="customerid.id"/>
@@ -44,7 +42,7 @@
   <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
    select
-     c.id as c_id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser as c_inputUser, c.`type`,
+     c.id as c_id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.`type`,
         p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime,
         e.id as e_id, e.`name` as e_name, e.email, e.age as e_age, e.dept, e.hireDate, e.`state` as e_state, e.`admin`, e.`role`
     from customertrace as c
@@ -87,7 +85,7 @@
     values (#{traceitime}, #{tracedetails}, #{tracetype}, #{traceresult}, #{customerid.id},
       #{inputuser.id}, #{type})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Customertrace" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.form.CustomertraceForm" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into customertrace
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -103,10 +101,10 @@
       <if test="traceresult != null">
         traceResult,
       </if>
-      <if test="customerid != null">
+      <if test="customerid.id != null">
         customerID,
       </if>
-      <if test="inputuser != null">
+      <if test="inputuser.id != null">
         inputUser,
       </if>
       <if test="type != null">
@@ -126,10 +124,10 @@
       <if test="traceresult != null">
         #{traceresult},
       </if>
-      <if test="customerid != null">
+      <if test="customerid.id != null">
         #{customerid.id},
       </if>
-      <if test="inputuser != null">
+      <if test="inputuser.id != null">
         #{inputuser.id},
       </if>
       <if test="type != null">
@@ -137,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <update id="update" parameterType="com.notfound.crm.sys.domain.Customertrace">
+  <update id="update" parameterType="com.notfound.crm.sys.form.CustomertraceForm">
     <!--@mbg.generated-->
     update customertrace
     <set>
@@ -153,11 +151,11 @@
       <if test="traceresult != null">
         traceResult = #{traceresult},
       </if>
-      <if test="customerid != null">
-        customerID = #{customerid},
+      <if test="customerid.id != null">
+        customerID = #{customerid.id},
       </if>
-      <if test="inputuser != null">
-        inputUser = #{inputuser},
+      <if test="inputuser.id != null">
+        inputUser = #{inputuser.id},
       </if>
       <if test="type != null">
         `type` = #{type},
@@ -165,16 +163,4 @@
     </set>
     where id = #{id}
   </update>
-<!--  <update id="updateByPrimaryKey" parameterType="com.notfound.crm.sys.domain.Customertrace">-->
-<!--    &lt;!&ndash;@mbg.generated&ndash;&gt;-->
-<!--    update customertrace-->
-<!--    set traceITime = #{traceitime},-->
-<!--      traceDetails = #{tracedetails},-->
-<!--      traceType = #{tracetype},-->
-<!--      traceResult = #{traceresult},-->
-<!--      customerID = #{customerid},-->
-<!--      inputUser = #{inputuser},-->
-<!--      `type` = #{type}-->
-<!--    where id = #{id}-->
-<!--  </update>-->
 </mapper>

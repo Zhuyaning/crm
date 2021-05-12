@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
  *   Time: 8:43
  */
 
-@RestController
+
 @RequestMapping("/customertrace")
+@RestController
 public class CustomertraceController {
 
     @Autowired
