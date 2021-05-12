@@ -1,7 +1,10 @@
 package com.notfound.crm.sys.controller;
 
+import com.notfound.crm.common.base.ExcendsQuery;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
+import com.notfound.crm.common.validator.ValidatorUtil;
+import com.notfound.crm.sys.form.CustomertransferFrom;
 import com.notfound.crm.sys.service.ICustomertransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +25,24 @@ public class CustomertransferController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Result list(Query query){
-        Result result = customertransferService.queryPage(query);
+    public Result list(ExcendsQuery eq){
+        Result result = customertransferService.queryPage(eq);
         return result;
+    }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public Result insert(CustomertransferFrom customertransferFrom){
+        ValidatorUtil.validator(customertransferFrom);
+        Result add = customertransferService.add(customertransferFrom);
+        return add;
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result delete(Integer id){
+        ValidatorUtil.validator(id);
+        Result delete = customertransferService.delete(id);
+        return delete;
     }
 }

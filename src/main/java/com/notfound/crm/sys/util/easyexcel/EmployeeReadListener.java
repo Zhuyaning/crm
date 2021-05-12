@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @Description: 员工类的回调监听器
  */
 @Component
-@Scope("prototype")
+@Scope("prototype")   //此处必须换成多例模式
 public class EmployeeReadListener extends AnalysisEventListener<EmployeeVO> {
     @Override
     public void invoke(EmployeeVO data, AnalysisContext context) {

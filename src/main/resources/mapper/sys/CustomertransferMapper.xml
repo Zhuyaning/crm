@@ -29,6 +29,15 @@
         order by c.transTime
     </select>
 
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into customertransfer(transTime,newShell,transReason)
+        values (#{transTime},#{newShell},#{transReason})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from customertransfer where id=#{id}
+    </delete>
+
 
 
 </mapper>

@@ -29,19 +29,16 @@ public class Customertrace {
     private Integer traceresult;
 
     /**
-    * 跟进客户
+    * 跟进客户对象
     */
-    private String customerid;
+    private Potentialcustomer customerid;
 
     /**
-    * 创建人
+    * 创建人对象
     */
-    private String inputuser;
+    private Employee inputuser;
 
-    /**
-    * 跟进类型：0 潜在开发计划，1 客户跟进历史
-    */
-    private Integer type;
+    private int type;
 
     public Integer getId() {
         return id;
@@ -83,27 +80,27 @@ public class Customertrace {
         this.traceresult = traceresult;
     }
 
-    public String getCustomerid() {
+    public Potentialcustomer getCustomerid() {
         return customerid;
     }
 
-    public void setCustomerid(String customerid) {
+    public void setCustomerid(Potentialcustomer customerid) {
         this.customerid = customerid;
     }
 
-    public String getInputuser() {
+    public Employee getInputuser() {
         return inputuser;
     }
 
-    public void setInputuser(String inputuser) {
+    public void setInputuser(Employee inputuser) {
         this.inputuser = inputuser;
     }
 
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -115,8 +112,8 @@ public class Customertrace {
                 ", tracedetails='" + tracedetails + '\'' +
                 ", tracetype='" + tracetype + '\'' +
                 ", traceresult=" + traceresult +
-                ", customerid='" + customerid + '\'' +
-                ", inputuser='" + inputuser + '\'' +
+                ", customerid=" + customerid +
+                ", inputuser=" + inputuser +
                 ", type=" + type +
                 '}';
     }

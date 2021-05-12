@@ -9,7 +9,7 @@ import java.util.List;
  *   Time: 22:34
  */
 
-public class CustomertraceForm {
+public class CustomertraceVOOnly {
 
     private String name;//客户名字
 

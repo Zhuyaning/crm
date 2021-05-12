@@ -1,11 +1,10 @@
 package com.notfound.crm.sys.controller;
 
-import com.notfound.crm.common.base.CustomertraceForm;
+import com.notfound.crm.common.base.CustomertraceVOOnly;
 import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
-import com.notfound.crm.sys.domain.DictionaryDetails;
 import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.IDictionaryContentsService;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /***
@@ -114,13 +112,13 @@ public class PotentialcustomerController {
         List<Object> dataList = data.getData();//跟踪方式的list
 
         //封装上述两个数据的对象
-        CustomertraceForm customertraceForm = new CustomertraceForm();
-        customertraceForm.setName(name);
-        customertraceForm.setInfo(dataList);
+        CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
+        customertraceVOOnly.setName(name);
+        customertraceVOOnly.setInfo(dataList);
 
         //再将数据封装到统一返回结果对象中
         Result resultFinal = new Result();
-        resultFinal.setData(customertraceForm);
+        resultFinal.setData(customertraceVOOnly);
 
         return resultFinal;
     }
