@@ -29,7 +29,7 @@ public class PermissionsForm extends Permissions {
     private String expression;
 
     /**
-     * 关系连接
+     *  关系连接
      */
     private List<Role> roleList = new ArrayList<>();
 
