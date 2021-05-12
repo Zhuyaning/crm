@@ -13,19 +13,29 @@
     <result column="c_inputUser" property="inputuser" />
     <result column="type" property="type" />
 
-    <result column="p_id" property="potentialcustomer.id"/>
-    <result column="name" property="potentialcustomer.name"/>
-    <result column="age" property="potentialcustomer.age"/>
-    <result column="gender" property="potentialcustomer.gender"/>
-    <result column="tel" property="potentialcustomer.tel"/>
-    <result column="qq" property="potentialcustomer.qq"/>
-    <result column="job" property="potentialcustomer.job"/>
-    <result column="source" property="potentialcustomer.source"/>
-    <result column="seller" property="potentialcustomer.seller"/>
-    <result column="p_inputUser" property="potentialcustomer.inputuser"/>
-    <result column="inputTime" property="potentialcustomer.inputtime"/>
-    <result column="status" property="potentialcustomer.status"/>
-    <result column="positiveTime" property="potentialcustomer.positivetime"/>
+    <result column="p_id" property="customerid.id"/>
+    <result column="name" property="customerid.name"/>
+    <result column="age" property="customerid.age"/>
+    <result column="gender" property="customerid.gender"/>
+    <result column="tel" property="customerid.tel"/>
+    <result column="qq" property="customerid.qq"/>
+    <result column="job" property="customerid.job"/>
+    <result column="source" property="customerid.source"/>
+    <result column="seller" property="customerid.seller"/>
+    <result column="p_inputUser" property="customerid.inputuser"/>
+    <result column="inputTime" property="customerid.inputtime"/>
+    <result column="status" property="customerid.status"/>
+    <result column="positiveTime" property="customerid.positivetime"/>
+
+    <result column="e_id" property="inputuser.id"/>
+    <result column="e_name" property="inputuser.name"/>
+    <result column="email" property="inputuser.email"/>
+    <result column="e_age" property="inputuser.age"/>
+    <result column="dept" property="inputuser.dept"/>
+    <result column="hireDate" property="inputuser.hiredate"/>
+    <result column="e_state" property="inputuser.state"/>
+    <result column="admin" property="inputuser.admin"/>
+    <result column="role" property="inputuser.role"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -35,20 +45,26 @@
     <!--@mbg.generated-->
    select
      c.id as c_id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser as c_inputUser, c.`type`,
-        p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime
+        p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime,
+        e.id as e_id, e.`name` as e_name, e.email, e.age as e_age, e.dept, e.hireDate, e.`state` as e_state, e.`admin`, e.`role`
     from customertrace as c
     inner join potentialcustomer as p
     on c.customerID = p.id
+    inner join employee as e
+    on c.inputUser = e.id
   </select>
 
     <!--分页以及模糊查询-->
   <select id="selectList" resultMap="BaseResultMap">
     select
      c.id as c_id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser as c_inputUser, c.`type`,
-        p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime
+        p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime,
+        e.id as e_id, e.`name` as e_name, e.email, e.age as e_age, e.dept, e.hireDate, e.`state` as e_state, e.`admin`, e.`role`
     from customertrace as c
     inner join potentialcustomer as p
     on c.customerID = p.id
+    inner join employee as e
+    on c.inputUser = e.id
     <where>
             <if test="type != null">
                 (type = #{type})
@@ -64,12 +80,12 @@
     delete from customertrace
     where id = #{id}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Customertrace" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.form.CustomertraceForm" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into customertrace (traceITime, traceDetails, traceType, traceResult, customerID,
       inputUser, `type`)
-    values (#{traceitime}, #{tracedetails}, #{tracetype}, #{traceresult}, #{customerid},
-      #{inputuser}, #{type})
+    values (#{traceitime}, #{tracedetails}, #{tracetype}, #{traceresult}, #{customerid.id},
+      #{inputuser.id}, #{type})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Customertrace" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -111,10 +127,10 @@
         #{traceresult},
       </if>
       <if test="customerid != null">
-        #{customerid},
+        #{customerid.id},
       </if>
       <if test="inputuser != null">
-        #{inputuser},
+        #{inputuser.id},
       </if>
       <if test="type != null">
         #{type},

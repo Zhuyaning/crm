@@ -12,6 +12,4 @@ import com.notfound.crm.sys.domain.Potentialcustomer;
  */
 
 public class CustomertraceVO extends Customertrace {
-
-    private Potentialcustomer potentialcustomer;
 }
