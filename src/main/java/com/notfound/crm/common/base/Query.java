@@ -1,7 +1,5 @@
 package com.notfound.crm.common.base;
 
-import java.util.Date;
-
 /**
  * @author Wan_JiaLin
  * @Create 2021-04-30 10:34
@@ -28,17 +26,7 @@ public class Query {
     /**
      * 模糊查询类型种类
      */
-    private Long type;
-
-    /**
-     * 查询从什么时间开始
-     */
-    private Date startTime;
-
-    /**
-     * 从什么时间结束
-     */
-    private Date endTime;
+    private Integer type;
 
     public Integer getCurrentPage() {
         return currentPage;
@@ -80,27 +68,11 @@ public class Query {
         this.keyword = keyword;
     }
 
-    public Long getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Long type) {
+    public void setType(Integer type) {
         this.type = type;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 }

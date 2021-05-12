@@ -30,6 +30,14 @@
     select
     <include refid="Base_Column_List" />
     from employee
+    <where>
+    <if test="keyword != null and keyword != ''">
+        and (name like concat("%",#{keyword},"%") or email like concat("%",#{keyword},"%"))
+    </if>
+    <if test="type != null and type != ''">
+        and id = #{type}
+    </if>
+    </where>
   </select>
 
   <!--登录-->
