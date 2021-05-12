@@ -18,6 +18,12 @@ public class ExcendsQuery extends Query{
      */
     private Date endTime;
 
+    /**
+     * 员工身份标识
+     */
+    private Integer self;
+
+
     public Date getStartTime() {
         return startTime;
     }
@@ -32,5 +38,13 @@ public class ExcendsQuery extends Query{
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public Integer getSelf() {
+        return self;
+    }
+
+    public void setSelf(Integer self) {
+        this.self = self;
     }
 }
