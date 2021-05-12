@@ -4,6 +4,7 @@ import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.EmployeeForm;
 import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.util.easyexcel.EasyExcelUtil;
@@ -109,16 +110,15 @@ public class EmployeeController {
     @RequestMapping("/exportExcel.do")
     @ResponseBody
     //http://localhost:8888/sys/exportExcel.do
-    public Result exportExcel(HttpServletResponse response, Query query){
+    public void exportExcel(HttpServletResponse response, Query query){
 
         Result result = employeeServiceImpl.queryPage(query);
         PageInfo data = (PageInfo) result.getData();
         List<Object> listdata = data.getData();
 
         EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
-        excelUtil.exportExcel(response, " 学生信息表123", EmployeeVO.class, listdata);
+        excelUtil.exportExcel(response, "员工表", EmployeeVO.class, listdata);
 
-        return new Result();
     }
 
     @RequestMapping("/importExcel.do")
