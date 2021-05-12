@@ -1,6 +1,5 @@
 package com.notfound.crm.sys.controller;
 
-import com.notfound.crm.common.base.CustomertraceForm;
 import com.notfound.crm.common.base.ExcendsQuery;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
