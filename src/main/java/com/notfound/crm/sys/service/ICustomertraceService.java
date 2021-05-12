@@ -15,6 +15,4 @@ import com.notfound.crm.sys.form.EmployeeForm;
  */
 
 public interface ICustomertraceService extends IBaseService<CustomertraceForm> {
-
-    Result queryPage(ExcendsQuery query);
 }

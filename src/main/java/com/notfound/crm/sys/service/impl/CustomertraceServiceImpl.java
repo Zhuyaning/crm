@@ -29,15 +29,4 @@ public class CustomertraceServiceImpl extends BaseServiceImpl<CustomertraceForm>
     public CustomertraceServiceImpl(CustomertraceMapper mapper) {
         super(mapper);
     }
-
-    @Override
-    public Result queryPage(ExcendsQuery query) {
-        Page<Object> data = PageHelper.startPage(query.getCurrentPage(), query.getPageSize());
-
-        List list = mapper.selectList(query);
-
-        PageInfo pageData = new PageInfo(data.getPageNum(), data.getPageSize(), data.getTotal(), data.getResult());
-
-        return new Result(pageData);
-    }
 }
