@@ -63,7 +63,6 @@ public class CustomertraceController {
     @RequestMapping("/update")
     public Result updateCustomertrace(CustomertraceForm customertraceForm){
         ValidatorUtil.validator(customertraceForm);
-
         Result result = iCustomertraceService.update(customertraceForm);
         return result;
     }
