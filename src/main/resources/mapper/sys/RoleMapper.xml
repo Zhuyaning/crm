@@ -5,9 +5,7 @@
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="sn" jdbcType="VARCHAR" property="sn" />
         <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="p_id" jdbcType="VARCHAR" property="permission.id" />
-        <result column="p_name" jdbcType="VARCHAR" property="permission.name" />
-        <result column="p_expression" jdbcType="VARCHAR" property="permission.expression" />
+        <collection select="com.notfound.crm.sys.mapper.EmployeeMapper.queryByRoleId" column="name" property="employeeList"/>
     </resultMap>
 
     <select id="selectList" resultMap="BaseResultMap">

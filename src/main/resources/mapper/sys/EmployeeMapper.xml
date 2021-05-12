@@ -25,6 +25,14 @@
     where id = #{id}
   </select>
 
+  <!--给Role的外加SQL-->
+  <select id="queryByRoleId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
+    where role=#{role.name}
+  </select>
+
   <!--分页以及模糊查询-->
   <select id="selectList" resultMap="BaseResultMap">
     select

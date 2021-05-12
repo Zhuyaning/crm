@@ -23,7 +23,7 @@ public class Permissions {
     private String expression;
 
     /**
-     * 关系连接
+     * 角色表关系连接
      */
     private List<Role> roleList = new ArrayList<>();
 
