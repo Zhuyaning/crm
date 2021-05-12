@@ -2,7 +2,9 @@ package com.notfound.crm.sys.vo;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.notfound.crm.sys.domain.Employee;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -12,6 +14,8 @@ import java.util.Date;
  * @Create 2021-05-08 15:28
  * @Description: 用于接收查询到的数据
  */
+@Data
+@ColumnWidth(20)
 public class EmployeeVO{
     /**
      * ID
@@ -22,48 +26,60 @@ public class EmployeeVO{
     /**
      * 员工姓名
      */
+    @ExcelProperty(value = "员工姓名")
     private String name;
 
     /**
      * 密码
      */
+    @ExcelProperty(value = "密码")
+    @ColumnWidth(20)
     private String password;
 
     /**
      * 邮箱
      */
+    @ColumnWidth(25)
+    @ExcelProperty(value = "邮箱")
     private String email;
 
     /**
      * 年龄
      */
+    @ExcelProperty(value = "年龄")
     private Integer age;
 
     /**
      * 部门
      */
+    @ExcelProperty(value = "部门")
     private Long dept;
 
     /**
      * 入职日期
      */
+    @ColumnWidth(20)
+    @ExcelProperty(value = "入职日期")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hiredate;
 
     /**
-     * 入职时间：1 正常，0 离职
+     * 状态：1 正常，0 离职
      */
+    @ExcelProperty(value = "状态")
     private Integer state;
 
     /**
      * 超级管理员身份：1 超级管理员，0普通员工
      */
+    @ExcelProperty(value = "是否超级管理员")
     private Integer admin;
 
     /**
      * 角色
      */
-    private String role;
+    @ExcelProperty(value = "角色")
+    private Long role;
 
     public Integer getId() {
         return id;
@@ -137,11 +153,11 @@ public class EmployeeVO{
         this.admin = admin;
     }
 
-    public String getRole() {
+    public Long getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Long role) {
         this.role = role;
     }
 }

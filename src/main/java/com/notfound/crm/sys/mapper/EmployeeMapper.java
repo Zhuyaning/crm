@@ -2,9 +2,12 @@ package com.notfound.crm.sys.mapper;
 
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.mapper.BaseMapper;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.EmployeeForm;
 import com.notfound.crm.sys.vo.EmployeeVO;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface EmployeeMapper extends BaseMapper<EmployeeForm, EmployeeVO> {
     /**
@@ -27,4 +30,11 @@ public interface EmployeeMapper extends BaseMapper<EmployeeForm, EmployeeVO> {
      * @return
      */
     int deleteByIdList(@Param("ids") Integer[] ids);
+
+    /**
+     * 批量插入数据
+     * @param data
+     * @return
+     */
+    int addBatch(EmployeeVO data);
 }

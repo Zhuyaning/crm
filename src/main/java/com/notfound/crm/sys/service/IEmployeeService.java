@@ -2,10 +2,12 @@ package com.notfound.crm.sys.service;
 
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.service.IBaseService;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.EmployeeForm;
 import com.notfound.crm.sys.vo.EmployeeVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author Wan_JiaLin
@@ -33,5 +35,11 @@ public interface IEmployeeService extends IBaseService<EmployeeForm>{
      * @return
      */
     Result deleteByIdList(Integer[] ids);
+
+    /**
+     * 批量添加数据
+     * @return
+     */
+    Result addBatch(List<EmployeeVO> data);
 
 }

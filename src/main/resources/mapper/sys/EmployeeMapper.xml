@@ -80,7 +80,17 @@
       #{age}, #{dept}, #{hiredate},
       #{state}, #{admin}, #{role})
   </insert>
-
+  
+  <!--批量插入数据-->
+  <insert id="addBatch" parameterType="com.notfound.crm.sys.vo.EmployeeVO" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    insert into employee (`name`, `password`, email,
+      age, dept, hireDate,
+      `state`, `admin`, `role`)
+    values (#{name}, #{password}, #{email},
+      #{age}, #{dept}, #{hiredate},
+      #{state}, #{admin}, #{role})
+  </insert>
+    
   <!--选择插入-->
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.notfound.crm.sys.domain.Employee" useGeneratedKeys="true">
     insert into employee

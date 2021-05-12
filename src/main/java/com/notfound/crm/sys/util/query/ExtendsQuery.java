@@ -1,6 +1,7 @@
-package com.notfound.crm.common.base;
+package com.notfound.crm.sys.util.query;
 
-import java.util.Calendar;
+import com.notfound.crm.common.base.Query;
+
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * @Version 1.0
  * @Description 新增时间查询功能
  */
-public class ExcendsQuery extends Query{
+public class ExtendsQuery extends Query {
     /**
      * 查询的开始时间
      */

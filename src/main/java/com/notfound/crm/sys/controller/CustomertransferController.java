@@ -1,7 +1,6 @@
 package com.notfound.crm.sys.controller;
 
-import com.notfound.crm.common.base.ExcendsQuery;
-import com.notfound.crm.common.base.Query;
+import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.CustomertransferFrom;
@@ -25,7 +24,7 @@ public class CustomertransferController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Result list(ExcendsQuery eq){
+    public Result list(ExtendsQuery eq){
         Result result = customertransferService.queryPage(eq);
         return result;
     }

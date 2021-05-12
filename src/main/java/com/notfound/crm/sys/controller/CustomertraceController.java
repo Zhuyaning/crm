@@ -1,6 +1,6 @@
 package com.notfound.crm.sys.controller;
 
-import com.notfound.crm.common.base.ExcendsQuery;
+import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.CustomertraceForm;
@@ -42,7 +42,7 @@ public class CustomertraceController {
      * @return
      */
     @RequestMapping("/queryPage")
-    public Result queryPageCustomertrace(ExcendsQuery query){
+    public Result queryPageCustomertrace(ExtendsQuery query){
         ValidatorUtil.validator(query);
         Result result = iCustomertraceService.queryPage(query);
         return result;
