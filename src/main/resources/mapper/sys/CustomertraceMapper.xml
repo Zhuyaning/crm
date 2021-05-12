@@ -67,25 +67,14 @@
             <if test="type != null">
                 (type = #{type})
             </if>
-            <if test="keyword != null and keyword != ''">
-              and  (p.name like concat('%',#{keyword},'%') or p.tel like concat('%',#{keyword},'%'))
+            <if test="self != null">
+              and  (seller = #{self})
             </if>
-    </where>
-  </select>
-<!--查询自己跟踪的客户记录-->
- <select id="selectListSelf" resultMap="BaseResultMap">
-    select
-     c.id as c_id, c.traceITime, c.traceDetails, c.traceType, c.traceResult, c.customerID, c.inputUser as c_inputUser, c.`type`,
-        p.id as p_id, p.`name`, p.age, p.gender, p.tel, p.qq, p.job, p.`source`, p.seller, p.inputUser as p_inputUser, p.inputTime, p.`status`,p.positiveTime,
-        e.id as e_id, e.`name` as e_name, e.email, e.age as e_age, e.dept, e.hireDate, e.`state` as e_state, e.`admin`, e.`role`
-    from customertrace as c
-    inner join potentialcustomer as p
-    on c.customerID = p.id
-    inner join employee as e
-    on c.inputUser = e.id
-    <where>
-            <if test="type != null">
-                (type = #{type})
+            <if test="startTime != null">
+              and  (traceitime &gt; #{startTime})
+            </if>
+            <if test="endTime != null">
+              and  (traceitime &lt; #{endTime})
             </if>
             <if test="keyword != null and keyword != ''">
               and  (p.name like concat('%',#{keyword},'%') or p.tel like concat('%',#{keyword},'%'))
