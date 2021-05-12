@@ -1,5 +1,6 @@
 package com.notfound.crm.sys.form;
 
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.domain.Permissions;
 import com.notfound.crm.sys.domain.Role;
 import org.hibernate.validator.constraints.NotBlank;
@@ -30,7 +31,11 @@ public class RoleForm extends Role {
     /**
      * 权限关系连接
      */
-    private Permissions permissions;
+    private String permission;
+    /**
+     * 员工表连接
+     */
+    private List<Employee> employeeList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -56,11 +61,23 @@ public class RoleForm extends Role {
         this.name = name;
     }
 
-    public Permissions getPermissions() {
-        return permissions;
+    @Override
+    public String getPermission() {
+        return permission;
     }
 
-    public void setPermissions(Permissions permissions) {
-        this.permissions = permissions;
+    @Override
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    @Override
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    @Override
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }

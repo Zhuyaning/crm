@@ -72,7 +72,7 @@ public class EmployeeForm{
     private Integer admin;
 
     /**
-     * 角色
+     * 角色name连接
      */
     private String role;
 

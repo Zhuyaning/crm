@@ -58,7 +58,7 @@ public class Employee {
     /**
      * 角色
      */
-    private Long role;
+    private String role;
 
     public Integer getId() {
         return id;
@@ -132,11 +132,11 @@ public class Employee {
         this.admin = admin;
     }
 
-    public Long getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Long role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

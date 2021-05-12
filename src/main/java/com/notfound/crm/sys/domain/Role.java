@@ -1,5 +1,7 @@
 package com.notfound.crm.sys.domain;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,9 +23,14 @@ public class Role {
      */
     private String name;
     /**
-     * 权限关系连接
+     * 通过权限name连接
      */
-    private Permissions permissions;
+    private String permission;
+
+    /**
+     * 员工表连接
+     */
+    private List<Employee> employeeList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -49,11 +56,19 @@ public class Role {
         this.name = name;
     }
 
-    public Permissions getPermissions() {
-        return permissions;
+    public String getPermission() {
+        return permission;
     }
 
-    public void setPermissions(Permissions permissions) {
-        this.permissions = permissions;
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }

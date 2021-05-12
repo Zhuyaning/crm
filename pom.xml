@@ -97,10 +97,24 @@
       <version>${spring.version}</version>
     </dependency>
     <!-- 项目共用 -->
+    <!-- EasyExcel -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>easyexcel</artifactId>
+      <version>2.2.7</version>
+    </dependency>
+    <!-- lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.0</version>
+      <version>1.18.10</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- 文件上传 -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.4</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>

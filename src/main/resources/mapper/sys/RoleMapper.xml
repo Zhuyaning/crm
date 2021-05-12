@@ -5,25 +5,24 @@
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="sn" jdbcType="VARCHAR" property="sn" />
         <result column="name" jdbcType="VARCHAR" property="name" />
-<!--        <result column="p_id" jdbcType="VARCHAR" property="permission.id" />-->
-<!--        <result column="p_name" jdbcType="VARCHAR" property="permission.name" />-->
-<!--        <result column="p_expression" jdbcType="VARCHAR" property="permission.expression" />-->
-        <association columnPrefix="p_" property="permissions">
-            <result column="id" property="id"/>
-            <result column="name" property="name"/>
-            <result column="expression" property="expression"/>
-        </association>
+        <collection select="com.notfound.crm.sys.mapper.EmployeeMapper.queryByRoleId" column="name" property="employeeList"/>
     </resultMap>
 
     <select id="selectList" resultMap="BaseResultMap">
-        select r.id,r.name,r.sn,r.permission,p.id as p_id,p.name as p_name,p.expression as p_expression
-        from role as r join permissions as p on r.permission=p.name
+        select id,name,sn,permission
+        from role
     </select>
 
     <select id="selectOne" resultMap="BaseResultMap">
-        select r.id,r.name,r.sn,r.permission,p.id as p_id,p.name as p_name,p.expression as p_expression
-        from role as r join permissions as p on r.permission=p.name
-        where r.id=#{id,jdbcType=INTEGER}
+        select id,name,sn,permission
+        from role
+        where id=#{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryByPermissions" resultMap="BaseResultMap">
+        select id,name,sn,permission
+        from role
+        where permission=#{permissions.name}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
