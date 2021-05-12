@@ -19,6 +19,9 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
+    <!--上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
     <!--拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>

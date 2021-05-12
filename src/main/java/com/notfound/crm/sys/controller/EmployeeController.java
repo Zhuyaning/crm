@@ -1,21 +1,26 @@
 package com.notfound.crm.sys.controller;
 
+import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.EmployeeForm;
 import com.notfound.crm.sys.service.IEmployeeService;
-import com.notfound.crm.sys.service.impl.EmployeeServiceImpl;
+import com.notfound.crm.sys.util.easyexcel.EasyExcelUtil;
+import com.notfound.crm.sys.util.easyexcel.EmployeeReadListener;
 import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Validator;
-import java.lang.reflect.Array;
+import javax.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Wan_JiaLin
@@ -101,5 +106,32 @@ public class EmployeeController {
         Result result = employeeServiceImpl.updateByPrimaryKeySelective(employeeVO);
         return result;
     }
+
+    @RequestMapping("/exportExcel.do")
+    @ResponseBody
+    //http://localhost:8888/sys/exportExcel.do
+    public void exportExcel(HttpServletResponse response, Query query){
+
+        Result result = employeeServiceImpl.queryPage(query);
+        PageInfo data = (PageInfo) result.getData();
+        List<Object> listdata = data.getData();
+
+        EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
+        excelUtil.exportExcel(response, "员工表", EmployeeVO.class, listdata);
+
+    }
+
+    @RequestMapping("/importExcel.do")
+    @ResponseBody
+    //http://localhost:8888/sys/importExcel.do
+    public Result importExcel(MultipartFile multipartFile){
+        //新建easyexcel工具类，指定操作的实体类
+        EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
+
+        Result result = excelUtil.importExcel(multipartFile, EmployeeVO.class, new EmployeeReadListener());
+
+        return result;
+    }
+
 
 }

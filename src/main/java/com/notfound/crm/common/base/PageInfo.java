@@ -1,5 +1,7 @@
 package com.notfound.crm.common.base;
 
+import com.notfound.crm.sys.vo.EmployeeVO;
+
 import java.util.List;
 
 /**

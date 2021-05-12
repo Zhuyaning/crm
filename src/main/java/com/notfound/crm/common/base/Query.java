@@ -26,8 +26,7 @@ public class Query {
     /**
      * 模糊查询类型种类
      */
-    private Long type;
-
+    private Integer type;
 
     public Integer getCurrentPage() {
         return currentPage;
@@ -69,11 +68,11 @@ public class Query {
         this.keyword = keyword;
     }
 
-    public Long getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Long type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 }

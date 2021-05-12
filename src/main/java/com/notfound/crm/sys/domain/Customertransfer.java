@@ -9,13 +9,34 @@ import java.util.Date;
  * @Description 客户移交记录
  */
 public class Customertransfer {
-    private Integer id;                     //移交记录编号
-    private Potentialcustomer customer;     //客户
-    private Employee transUser;             //移交人员
-    private Date transTime;                 //移交时间
-    private String  oldSeller;             //老市场专员
-    private String  newSeller;             //新市场专员
-    private String transReason;             //移交原因
+    /**
+     * 移交记录编号
+     */
+    private Integer id;
+    /**
+     * 客户
+     */
+    private Potentialcustomer customer;
+    /**
+     * 移交人员
+     */
+    private Employee transUser;
+    /**
+     *移交时间
+     */
+    private Date transTime;
+    /**
+     *老市场专员
+     */
+    private String  oldSeller;
+    /**
+     *新市场专员
+     */
+    private String  newSeller;
+    /**
+     *移交原因
+     */
+    private String transReason;
 
     public Integer getId() {
         return id;

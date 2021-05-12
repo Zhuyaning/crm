@@ -1,5 +1,7 @@
 package com.notfound.crm.sys.domain;
 
+import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
+
 import java.util.Date;
 
 /**
