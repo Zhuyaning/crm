@@ -10,6 +10,9 @@ import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.util.easyexcel.EasyExcelUtil;
 import com.notfound.crm.sys.util.easyexcel.EmployeeReadListener;
 import com.notfound.crm.sys.vo.EmployeeVO;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +32,17 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/sys")
-public class EmployeeController {
+public class EmployeeController implements BeanFactoryAware {
 
     @Autowired
     private IEmployeeService employeeServiceImpl;
+
+    private BeanFactory beanFactory;
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
+    }
 
     @RequestMapping("/login")
     @ResponseBody
@@ -118,7 +128,6 @@ public class EmployeeController {
 
         EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
         excelUtil.exportExcel(response, "员工表", EmployeeVO.class, listdata);
-
     }
 
     @RequestMapping("/importExcel.do")
@@ -128,9 +137,9 @@ public class EmployeeController {
         //新建easyexcel工具类，指定操作的实体类
         EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
 
-        Result result = excelUtil.importExcel(multipartFile, EmployeeVO.class, new EmployeeReadListener());
-
-        employeeServiceImpl.addBatch(EmployeeReadListener.listData);
+        EmployeeReadListener employeeReadListener = beanFactory.getBean(EmployeeReadListener.class);
+        System.out.println(employeeReadListener.hashCode());
+        Result result = excelUtil.importExcel(multipartFile, EmployeeVO.class, employeeReadListener);
 
         return result;
     }
