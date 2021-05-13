@@ -5,7 +5,9 @@
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="sn" jdbcType="VARCHAR" property="sn" />
         <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="permission" jdbcType="VARCHAR" property="permission" />
         <collection select="com.notfound.crm.sys.mapper.EmployeeMapper.queryByRoleId" column="name" property="employeeList"/>
+        <collection select="com.notfound.crm.sys.mapper.PermissionsMapper.queryByRole" column="permission" property="permissionsList"/>
     </resultMap>
 
     <select id="selectList" resultMap="BaseResultMap">
@@ -17,12 +19,6 @@
         select id,name,sn,permission
         from role
         where id=#{id,jdbcType=INTEGER}
-    </select>
-
-    <select id="queryByPermissions" resultMap="BaseResultMap">
-        select id,name,sn,permission
-        from role
-        where permission=#{permissions.name}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">

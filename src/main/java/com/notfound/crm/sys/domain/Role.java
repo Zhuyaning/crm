@@ -32,6 +32,14 @@ public class Role {
      */
     private List<Employee> employeeList = new ArrayList<>();
 
+    /**
+     * 权限表连接
+     */
+    private List<Permissions> permissionsList = new ArrayList<>();
+
+    public Role() {
+    }
+
     public Integer getId() {
         return id;
     }
@@ -70,5 +78,13 @@ public class Role {
 
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
+    }
+
+    public List<Permissions> getPermissionsList() {
+        return permissionsList;
+    }
+
+    public void setPermissionsList(List<Permissions> permissionsList) {
+        this.permissionsList = permissionsList;
     }
 }

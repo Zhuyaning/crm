@@ -1,7 +1,5 @@
 package com.notfound.crm.sys.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Wen
@@ -18,14 +16,12 @@ public class Permissions {
      */
     private String name;
     /**
-     * 权限表达含义
-     */
+     * 资源
+     * */
     private String expression;
 
-    /**
-     * 角色表关系连接
-     */
-    private List<Role> roleList = new ArrayList<>();
+    public Permissions() {
+    }
 
     public Integer getId() {
         return id;
@@ -51,11 +47,4 @@ public class Permissions {
         this.expression = expression;
     }
 
-    public List<Role> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
 }
