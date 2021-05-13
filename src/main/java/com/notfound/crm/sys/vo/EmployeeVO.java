@@ -53,7 +53,7 @@ public class EmployeeVO{
      * 部门
      */
     @ExcelProperty(value = "部门")
-    private Long dept;
+    private String dept;
 
     /**
      * 入职日期
@@ -79,7 +79,7 @@ public class EmployeeVO{
      * 角色
      */
     @ExcelProperty(value = "角色")
-    private Long role;
+    private String role;
 
     public Integer getId() {
         return id;
@@ -121,11 +121,11 @@ public class EmployeeVO{
         this.age = age;
     }
 
-    public Long getDept() {
+    public String getDept() {
         return dept;
     }
 
-    public void setDept(Long dept) {
+    public void setDept(String dept) {
         this.dept = dept;
     }
 
@@ -153,11 +153,11 @@ public class EmployeeVO{
         this.admin = admin;
     }
 
-    public Long getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Long role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

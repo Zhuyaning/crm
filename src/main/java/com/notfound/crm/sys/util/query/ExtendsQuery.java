@@ -25,6 +25,10 @@ public class ExtendsQuery extends Query {
      */
     private Integer self;
 
+    /***
+     *查询部门所有潜在客户的
+     */
+    private Long deptId;
 
     public Date getStartTime() {
         return startTime;
@@ -48,5 +52,23 @@ public class ExtendsQuery extends Query {
 
     public void setSelf(Integer self) {
         this.self = self;
+    }
+
+    public Long getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(Long deptId) {
+        this.deptId = deptId;
+    }
+
+    @Override
+    public String toString() {
+        return "ExtendsQuery{" +
+                "startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", self=" + self +
+                ", deptId=" + deptId +
+                '}';
     }
 }

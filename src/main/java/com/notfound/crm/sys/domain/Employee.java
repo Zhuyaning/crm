@@ -39,7 +39,7 @@ public class Employee {
     /**
      * 部门
      */
-    private Long dept;
+    private String dept;
 
     /**
      * 入职日期
@@ -102,11 +102,11 @@ public class Employee {
         this.age = age;
     }
 
-    public Long getDept() {
+    public String getDept() {
         return dept;
     }
 
-    public void setDept(Long dept) {
+    public void setDept(String dept) {
         this.dept = dept;
     }
 

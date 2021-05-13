@@ -124,8 +124,17 @@ public class PotentialcustomerController {
         return resultFinal;
     }
 
+
+    /***
+     * 客户新增的报表信息，
+     * @param query
+     * @return 返回  {员工名：新增客户数量} list
+     */
     @RequestMapping("/report")
     public Result queryPageReport(ExtendsQuery query){
-        return null;
+
+        ValidatorUtil.validator(query);
+        Result result = iPotentialcustomerService.queryPageReport(query);
+        return result;
     }
 }
