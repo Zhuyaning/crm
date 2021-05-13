@@ -1,6 +1,8 @@
 package com.notfound.crm.sys.domain;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Date;
 
 public class Potentialcustomer {
     /**
@@ -56,6 +58,7 @@ public class Potentialcustomer {
     /**
     * 创建时间
     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date inputtime;
 
     /**
@@ -67,6 +70,7 @@ public class Potentialcustomer {
     /**
     * 转正时间
     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date positivetime;
 
     public Long getId() {

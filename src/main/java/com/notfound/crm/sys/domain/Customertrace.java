@@ -1,6 +1,8 @@
 package com.notfound.crm.sys.domain;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Date;
 
 public class Customertrace {
     /**
@@ -11,6 +13,8 @@ public class Customertrace {
     /**
     * 跟进时间
     */
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date traceitime;
 
     /**

@@ -10,6 +10,7 @@ import com.notfound.crm.sys.service.IDictionaryContentsService;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
 import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.service.IPotentialcustomerService;
+import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,7 @@ public class PotentialcustomerController {
      * @return
      */
     @RequestMapping("/queryPage")
-    public Result queryPage(Query query){
+    public Result queryPage(ExtendsQuery query){
         Result result = iPotentialcustomerService.queryPage(query);
         return result;
     }
@@ -121,5 +122,10 @@ public class PotentialcustomerController {
         resultFinal.setData(customertraceVOOnly);
 
         return resultFinal;
+    }
+
+    @RequestMapping("/report")
+    public Result queryPageReport(ExtendsQuery query){
+        return null;
     }
 }

@@ -37,6 +37,12 @@
             <if test="type != null">
                 (status = #{type})
             </if>
+            <if test="startTime != null">
+              and  (inputTime &gt; #{startTime})
+            </if>
+            <if test="endTime != null">
+              and  (inputTime &lt; #{endTime})
+            </if>
             <if test="keyword != null and keyword != ''">
               and  (name like concat('%',#{keyword},'%') or tel like concat('%',#{keyword},'%'))
             </if>
@@ -178,6 +184,30 @@
     </set>
     where id = #{id}
   </update>
+
+    <select id="queryPageReport" resultType="com.notfound.crm.sys.vo.QueryPageReportVO">
+           select count(potentialcustomer.id) as num,employee.name as name from potentialcustomer
+           inner join employee
+           on potentialcustomer.inputUser = employee.id
+           <where>
+                <if test="self != null">
+                (employee.id = #{self})
+            </if>
+            <if test="self != null">
+              and  (seller = #{self})
+            </if>
+            <if test="startTime != null">
+              and  (inputTime &gt; #{startTime})
+            </if>
+            <if test="endTime != null">
+              and  (inputTime &lt; #{endTime})
+            </if>
+            <if test="keyword != null and keyword != ''">
+              and  (employee.name like concat('%',#{keyword},'%'))
+            </if>
+           </where>
+    </select>
+
 <!--&lt;!&ndash;  根据id修改数据&ndash;&gt;-->
 <!--  <update id="update">-->
 <!--    update potentialcustomer-->
