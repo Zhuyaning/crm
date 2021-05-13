@@ -1,5 +1,8 @@
 package com.notfound.crm.sys.controller;
 
+import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.CircleCaptcha;
+import com.notfound.crm.common.base.CodeMsg;
 import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
@@ -21,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
@@ -62,12 +67,21 @@ public class EmployeeController implements BeanFactoryAware {
         return new Result();
     }
 
-    @RequestMapping("/getAuthCode")
+    @RequestMapping("/getAuthCode.do")
     @ResponseBody
-    //http://localhost:8888/sys/getAuthCode
-    public Result testInterceptor(EmployeeForm employeeForm){
-        System.out.println("正在测试。。。。。");
-        return new Result();
+    //http://localhost:8888/sys/getAuthCode.do
+    public void testInterceptor(HttpSession session, HttpServletResponse response){
+
+        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(90, 40, 4, 10);
+        //得到验证码
+        String authCode = circleCaptcha.getCode();
+        System.out.println(authCode);
+        session.setAttribute("SecurityCode", authCode);
+        try {
+            circleCaptcha.write(response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @RequestMapping("/queryPage")
