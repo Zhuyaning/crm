@@ -1,5 +1,8 @@
 package com.notfound.crm.sys.controller;
 
+import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.CircleCaptcha;
+import com.notfound.crm.common.base.CodeMsg;
 import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
@@ -10,6 +13,9 @@ import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.util.easyexcel.EasyExcelUtil;
 import com.notfound.crm.sys.util.easyexcel.EmployeeReadListener;
 import com.notfound.crm.sys.vo.EmployeeVO;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
@@ -29,10 +37,17 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/sys")
-public class EmployeeController {
+public class EmployeeController implements BeanFactoryAware {
 
     @Autowired
     private IEmployeeService employeeServiceImpl;
+
+    private BeanFactory beanFactory;
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
+    }
 
     @RequestMapping("/login")
     @ResponseBody
@@ -52,12 +67,21 @@ public class EmployeeController {
         return new Result();
     }
 
-    @RequestMapping("/getAuthCode")
+    @RequestMapping("/getAuthCode.do")
     @ResponseBody
-    //http://localhost:8888/sys/getAuthCode
-    public Result testInterceptor(EmployeeForm employeeForm){
-        System.out.println("正在测试。。。。。");
-        return new Result();
+    //http://localhost:8888/sys/getAuthCode.do
+    public void testInterceptor(HttpSession session, HttpServletResponse response){
+
+        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(90, 40, 4, 10);
+        //得到验证码
+        String authCode = circleCaptcha.getCode();
+        System.out.println(authCode);
+        session.setAttribute("SecurityCode", authCode);
+        try {
+            circleCaptcha.write(response.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @RequestMapping("/queryPage")
@@ -118,7 +142,6 @@ public class EmployeeController {
 
         EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
         excelUtil.exportExcel(response, "员工表", EmployeeVO.class, listdata);
-
     }
 
     @RequestMapping("/importExcel.do")
@@ -128,9 +151,9 @@ public class EmployeeController {
         //新建easyexcel工具类，指定操作的实体类
         EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
 
-        Result result = excelUtil.importExcel(multipartFile, EmployeeVO.class, new EmployeeReadListener());
-
-        employeeServiceImpl.addBatch(EmployeeReadListener.listData);
+        EmployeeReadListener employeeReadListener = beanFactory.getBean(EmployeeReadListener.class);
+        System.out.println(employeeReadListener.hashCode());
+        Result result = excelUtil.importExcel(multipartFile, EmployeeVO.class, employeeReadListener);
 
         return result;
     }

@@ -7,6 +7,7 @@ import com.alibaba.excel.read.builder.ExcelReaderSheetBuilder;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.builder.ExcelWriterSheetBuilder;
 import com.alibaba.fastjson.JSONObject;
+import com.notfound.crm.common.base.CodeMsg;
 import com.notfound.crm.common.base.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,9 +29,6 @@ import java.util.List;
 @Component
 public class EasyExcelUtil<T> {
 
-    @Autowired
-    private ServletContext servletContext;
-
     /**
      * 导入excel
      * @param multipartFile 上传excel文件
@@ -39,22 +37,23 @@ public class EasyExcelUtil<T> {
      * @return
      */
     public Result importExcel(MultipartFile multipartFile, Class<T> object, AnalysisEventListener<T> analysisEventListener){
-
         InputStream inputStream = null;
         try {
             inputStream = multipartFile.getInputStream();
+
+            //封装excel工作簿对象
+            ExcelReaderBuilder read = EasyExcel.read(inputStream, object, analysisEventListener);
+            //封装工作表
+            ExcelReaderSheetBuilder sheet = read.sheet();
+            //读取数据
+            sheet.doRead();
+
+            return new Result();
         } catch (IOException e) {
             System.out.println("上传的文件有问题！");
             e.printStackTrace();
+            return new Result(CodeMsg.ERROR);
         }
-        //封装excel工作簿对象
-        ExcelReaderBuilder read = EasyExcel.read(inputStream, object, analysisEventListener);
-        //封装工作表
-        ExcelReaderSheetBuilder sheet = read.sheet();
-        //读取数据
-        sheet.doRead();
-
-        return new Result();
     }
 
     /**
@@ -86,6 +85,5 @@ public class EasyExcelUtil<T> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

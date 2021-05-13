@@ -1,8 +1,9 @@
 package com.notfound.crm.sys.domain;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * @author Wan_JiaLin
@@ -43,6 +44,7 @@ public class Employee {
     /**
      * 入职日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hiredate;
 
     /**

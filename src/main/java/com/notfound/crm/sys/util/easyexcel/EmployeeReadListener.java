@@ -2,13 +2,13 @@ package com.notfound.crm.sys.util.easyexcel;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
-import com.notfound.crm.sys.domain.Employee;
+import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.vo.EmployeeVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Wan_JiaLin
@@ -19,7 +19,10 @@ import java.util.List;
 @Scope("prototype")   //此处必须换成多例模式
 public class EmployeeReadListener extends AnalysisEventListener<EmployeeVO> {
 
-    public static ArrayList<EmployeeVO> listData = new ArrayList<>();
+    private ArrayList<EmployeeVO> listData = new ArrayList<>();
+
+    @Autowired
+    private IEmployeeService employeeService;
 
     @Override
     public void invoke(EmployeeVO data, AnalysisContext context) {
@@ -29,6 +32,7 @@ public class EmployeeReadListener extends AnalysisEventListener<EmployeeVO> {
 
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
-
+        //读取完成，批量插入数据
+        employeeService.addBatch(listData);
     }
 }

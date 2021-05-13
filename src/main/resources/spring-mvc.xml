@@ -27,7 +27,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/sys/login"/>
-            <mvc:exclude-mapping path="/sys/testInterceptor.do"/>
+            <mvc:exclude-mapping path="/sys/getAuthCode.do"/>
             <bean class="com.notfound.crm.sys.interceptor.MyInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

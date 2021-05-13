@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Zheng_xiaolong
  * @Date 2021.05.09 17.15
@@ -22,11 +25,28 @@ public class DepartmentController {
     @Autowired
     private IDepartmentService departmentService;
 
+    /**
+     * 查询表中所有信息（进入表首页使用）
+     * @param query
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public Result first(Query query){
         Result list = departmentService.queryPage(query);
         return list;
+    }
+
+    /**
+     * 根据id查询表中单个信息（表中编辑使用）
+     * @param id
+     * @return
+     */
+    @RequestMapping("/query")
+    @ResponseBody
+    public Result query(Integer id){
+        Result query = departmentService.query(id);
+        return query;
     }
 
     @RequestMapping("/delete")
