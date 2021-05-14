@@ -132,7 +132,6 @@ public class PotentialcustomerController {
      */
     @RequestMapping("/report")
     public Result queryPageReport(ExtendsQuery query){
-
         ValidatorUtil.validator(query);
         Result result = iPotentialcustomerService.queryPageReport(query);
         return result;

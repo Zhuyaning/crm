@@ -215,7 +215,7 @@
         </where>
 
             GROUP BY employee.name
-
+            order by employee.name asc
     </select>
 
 <!--&lt;!&ndash;  根据id修改数据&ndash;&gt;-->

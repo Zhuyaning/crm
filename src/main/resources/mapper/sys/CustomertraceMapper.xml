@@ -80,6 +80,7 @@
               and  (p.name like concat('%',#{keyword},'%') or p.tel like concat('%',#{keyword},'%'))
             </if>
     </where>
+    order by p.inputTime desc
   </select>
 
   <delete id="delete" parameterType="java.lang.Integer">
