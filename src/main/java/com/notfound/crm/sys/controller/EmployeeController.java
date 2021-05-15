@@ -66,7 +66,7 @@ public class EmployeeController implements BeanFactoryAware {
 
         return new Result();
     }
-
+    
     @RequestMapping("/getAuthCode.do")
     @ResponseBody
     //http://localhost:8888/sys/getAuthCode.do
