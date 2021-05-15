@@ -47,10 +47,8 @@ public class RoleController {
     @RequestMapping("/deleteRole")
     @ResponseBody
     public Result delete(Integer id){
-
         ValidatorUtil.validator(id);
         Result result = roleService.delete(id);
-
         return result;
     }
 
@@ -58,10 +56,8 @@ public class RoleController {
     @RequestMapping("/addRole")
     @ResponseBody
     public Result add(RoleForm roleForm){
-
         ValidatorUtil.validator(roleForm);
         Result result = roleService.add(roleForm);
-
         return result;
     }
 
