@@ -60,12 +60,12 @@ public class PotentialcustomerController {
     @RequestMapping("/add")
     public Result add(PotentialcustomerForm form, HttpSession session){
 
-        Employee curr_user =(Employee) session.getAttribute("CURR_USER");
+        EmployeeVO curr_user =(EmployeeVO) session.getAttribute("CURR_USER");
         System.out.println(curr_user);
 
         form.setSeller(curr_user.getName());
         form.setInputuser(curr_user.getName());
-        form.setInputtime(new java.sql.Date(System.currentTimeMillis()));
+        form.setInputtime(new Date());
         form.setStatus(0);
 
         ValidatorUtil.validator(form);//验证前端传入数据非空
