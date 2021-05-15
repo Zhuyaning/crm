@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /***
@@ -61,6 +62,12 @@ public class PotentialcustomerController {
 
         Employee curr_user =(Employee) session.getAttribute("CURR_USER");
         System.out.println(curr_user);
+
+        form.setSeller(curr_user.getName());
+        form.setInputuser(curr_user.getName());
+        form.setInputtime(new java.sql.Date(System.currentTimeMillis()));
+        form.setStatus(0);
+
         ValidatorUtil.validator(form);//验证前端传入数据非空
         Result result = iPotentialcustomerService.add(form);
         return result;
