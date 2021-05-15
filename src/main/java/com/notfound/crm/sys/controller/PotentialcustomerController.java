@@ -59,16 +59,14 @@ public class PotentialcustomerController {
      */
     @RequestMapping("/add")
     public Result add(PotentialcustomerForm form, HttpSession session){
-
+        ValidatorUtil.validator(form);//验证前端传入数据非空
         EmployeeVO curr_user =(EmployeeVO) session.getAttribute("CURR_USER");
         System.out.println(curr_user);
-
         form.setSeller(curr_user.getName());
         form.setInputuser(curr_user.getName());
         form.setInputtime(new Date());
         form.setStatus(0);
-
-        ValidatorUtil.validator(form);//验证前端传入数据非空
+        System.out.println(form);
         Result result = iPotentialcustomerService.add(form);
         return result;
     }
@@ -109,12 +107,11 @@ public class PotentialcustomerController {
 
     @RequestMapping("/tranceOne")
     public Result tranceOne(Integer id){
-
+        System.out.println("############"+id);
         //先拿到客户名字
         Result eQuery = iEmployeeService.query(id);
-        PageInfo data = (PageInfo) eQuery.getData();
-        List<Object> data1 = data.getData();
-        EmployeeVO employeeVO = (EmployeeVO) data1.get(0);
+        System.out.println(eQuery);
+        EmployeeVO employeeVO = (EmployeeVO)eQuery.getData();
         String name = employeeVO.getName();//客户名字
 
         //查询到所有跟踪方式
@@ -122,7 +119,7 @@ public class PotentialcustomerController {
         query.setKeyword("1106");
         Result result = dictionaryDetailsService.queryPage(query);
         PageInfo data3 = (PageInfo) result.getData();
-        List<Object> dataList = data.getData();//跟踪方式的list
+        List<Object> dataList = data3.getData();//跟踪方式的list
 
         //封装上述两个数据的对象
         CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
