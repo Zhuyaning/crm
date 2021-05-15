@@ -5,6 +5,7 @@ import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.IDictionaryContentsService;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /***
@@ -55,8 +57,10 @@ public class PotentialcustomerController {
      * @return
      */
     @RequestMapping("/add")
-    public Result add(PotentialcustomerForm form){
+    public Result add(PotentialcustomerForm form, HttpSession session){
 
+        Employee curr_user =(Employee) session.getAttribute("CURR_USER");
+        System.out.println(curr_user);
         ValidatorUtil.validator(form);//验证前端传入数据非空
         Result result = iPotentialcustomerService.add(form);
         return result;
