@@ -193,7 +193,7 @@
         select count(potentialcustomer.id) as num,employee.name as name
         from potentialcustomer
         inner join employee
-        on potentialcustomer.inputUser = employee.id
+        on potentialcustomer.inputUser = employee.name
         <where>
 
             <if test="deptId != null ">

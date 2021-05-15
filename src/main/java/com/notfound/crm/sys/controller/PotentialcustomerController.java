@@ -97,7 +97,7 @@ public class PotentialcustomerController {
     }
 
     @RequestMapping("/tranceOne")
-    public Result tranceOne(Integer id,Query query){
+    public Result tranceOne(Integer id){
 
         //先拿到客户名字
         Result eQuery = iEmployeeService.query(id);
@@ -107,6 +107,7 @@ public class PotentialcustomerController {
         String name = employeeVO.getName();//客户名字
 
         //查询到所有跟踪方式
+        Query query = new Query();
         query.setKeyword("1106");
         Result result = dictionaryDetailsService.queryPage(query);
         PageInfo data3 = (PageInfo) result.getData();
