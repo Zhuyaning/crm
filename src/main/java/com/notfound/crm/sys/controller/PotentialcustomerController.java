@@ -5,6 +5,7 @@ import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.IDictionaryContentsService;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /***
@@ -55,8 +57,10 @@ public class PotentialcustomerController {
      * @return
      */
     @RequestMapping("/add")
-    public Result add(PotentialcustomerForm form){
+    public Result add(PotentialcustomerForm form, HttpSession session){
 
+        Employee curr_user =(Employee) session.getAttribute("CURR_USER");
+        System.out.println(curr_user);
         ValidatorUtil.validator(form);//验证前端传入数据非空
         Result result = iPotentialcustomerService.add(form);
         return result;
@@ -97,7 +101,7 @@ public class PotentialcustomerController {
     }
 
     @RequestMapping("/tranceOne")
-    public Result tranceOne(Integer id,Query query){
+    public Result tranceOne(Integer id){
 
         //先拿到客户名字
         Result eQuery = iEmployeeService.query(id);
@@ -107,6 +111,7 @@ public class PotentialcustomerController {
         String name = employeeVO.getName();//客户名字
 
         //查询到所有跟踪方式
+        Query query = new Query();
         query.setKeyword("1106");
         Result result = dictionaryDetailsService.queryPage(query);
         PageInfo data3 = (PageInfo) result.getData();
@@ -124,8 +129,16 @@ public class PotentialcustomerController {
         return resultFinal;
     }
 
+
+    /***
+     * 客户新增的报表信息，
+     * @param query
+     * @return 返回  {员工名：新增客户数量} list
+     */
     @RequestMapping("/report")
     public Result queryPageReport(ExtendsQuery query){
-        return null;
+        ValidatorUtil.validator(query);
+        Result result = iPotentialcustomerService.queryPageReport(query);
+        return result;
     }
 }

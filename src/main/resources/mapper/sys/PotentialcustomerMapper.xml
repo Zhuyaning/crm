@@ -184,28 +184,38 @@
     </set>
     where id = #{id}
   </update>
+    <resultMap id="baseResultMap2" type="com.notfound.crm.sys.vo.QueryPageReportVO">
+            <result column="name" property="name"/>
+            <result column="num" property="num"/>
+    </resultMap>
+<!--报表的模糊查询-->
+    <select id="queryPageReport" resultMap="baseResultMap2">
+        select count(potentialcustomer.id) as num,employee.name as name
+        from potentialcustomer
+        inner join employee
+        on potentialcustomer.inputUser = employee.name
+        <where>
 
-    <select id="queryPageReport" resultType="com.notfound.crm.sys.vo.QueryPageReportVO">
-           select count(potentialcustomer.id) as num,employee.name as name from potentialcustomer
-           inner join employee
-           on potentialcustomer.inputUser = employee.id
-           <where>
-                <if test="self != null">
-                (employee.id = #{self})
+            <if test="deptId != null ">
+                employee.dept = #{deptId}
             </if>
-            <if test="self != null">
-              and  (seller = #{self})
+
+            <if test="startTime !=null">
+               and potentialcustomer.inputTime &gt; #{startTime}
             </if>
-            <if test="startTime != null">
-              and  (inputTime &gt; #{startTime})
+
+            <if test="endTime !=null">
+              and  potentialcustomer.inputTime &lt; #{endTime}
             </if>
-            <if test="endTime != null">
-              and  (inputTime &lt; #{endTime})
+
+            <if test="keyword != null ">
+              and  employee.name like concat('%',#{keyword},'%')
             </if>
-            <if test="keyword != null and keyword != ''">
-              and  (employee.name like concat('%',#{keyword},'%'))
-            </if>
-           </where>
+
+        </where>
+
+            GROUP BY employee.name
+            order by employee.name asc
     </select>
 
 <!--&lt;!&ndash;  根据id修改数据&ndash;&gt;-->

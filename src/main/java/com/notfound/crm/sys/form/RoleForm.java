@@ -36,6 +36,10 @@ public class RoleForm extends Role {
      * 员工表连接
      */
     private List<Employee> employeeList = new ArrayList<>();
+    /**
+     * 权限表连接
+     */
+    private List<Permissions> permissionsList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -79,5 +83,13 @@ public class RoleForm extends Role {
     @Override
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
+    }
+
+    public List<Permissions> getPermissionsList() {
+        return permissionsList;
+    }
+
+    public void setPermissionsList(List<Permissions> permissionsList) {
+        this.permissionsList = permissionsList;
     }
 }

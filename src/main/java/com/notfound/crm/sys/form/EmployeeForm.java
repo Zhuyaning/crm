@@ -76,6 +76,9 @@ public class EmployeeForm{
      */
     private String role;
 
+    public EmployeeForm() {
+    }
+
     public Integer getId() {
         return id;
     }

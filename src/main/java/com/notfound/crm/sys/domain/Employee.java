@@ -62,6 +62,9 @@ public class Employee {
      */
     private String role;
 
+    public Employee() {
+    }
+
     public Integer getId() {
         return id;
     }
