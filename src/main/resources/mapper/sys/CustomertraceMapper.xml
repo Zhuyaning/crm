@@ -35,10 +35,12 @@
     <result column="admin" property="inputuser.admin"/>
     <result column="role" property="inputuser.role"/>
   </resultMap>
+
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, traceITime, traceDetails, traceType, traceResult, customerID, inputUser, `type`
   </sql>
+
   <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
    select
@@ -50,6 +52,7 @@
     on c.customerID = p.id
     inner join employee as e
     on c.inputUser = e.id
+    where c.id = #{id,jdbcType=INTEGER}
   </select>
 
     <!--分页以及模糊查询-->
