@@ -16,7 +16,10 @@ import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.resource.HttpResource;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -105,7 +108,7 @@ public class PotentialcustomerController {
     }
 
     @RequestMapping("/tranceOne")
-    public Result tranceOne(Integer id){
+    public Result tranceOne(Integer id, HttpServletRequest request){
         //先拿到客户名字
         Result eQuery = iEmployeeService.query(id);
         System.out.println(eQuery);
@@ -127,6 +130,8 @@ public class PotentialcustomerController {
         //再将数据封装到统一返回结果对象中
         Result resultFinal = new Result();
         resultFinal.setData(customertraceVOOnly);
+
+        request.setAttribute("id",id);
 
         return resultFinal;
     }
