@@ -1,6 +1,8 @@
 package com.notfound.crm.sys.controller;
 
 import com.notfound.crm.sys.domain.Employee;
+import com.notfound.crm.sys.domain.Potentialcustomer;
+import com.notfound.crm.sys.service.IPotentialcustomerService;
 import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
@@ -28,24 +30,32 @@ public class CustomertraceController {
 
     @Autowired
     ICustomertraceService iCustomertraceService;
-
+    @Autowired
+    IPotentialcustomerService iPotentialcustomerService;
     /***
      * 添加一条跟踪记录。
      * @param form
      * @return
      */
     @RequestMapping("/add")
-    public Result addCustomertrace(CustomertraceForm form,HttpSession session ){
+    public Result addCustomertrace(CustomertraceForm form,HttpSession session,Integer c_id){
 
-        //添加当前操作的员工对象和操作时间
+        ValidatorUtil.validator(form);
+        //操作客户
+        Result  crr_customerResult = iCustomertraceService.query(c_id);
+        Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
+
+        //操作时间
         form.setTraceitime(new Date());
+        //操作员工
         Employee curr_user = (Employee) session.getAttribute("CURR_USER");
-        form.setInputuser(curr_user);
+
+        form.setInputuser(curr_user);//封装用户对象
+        form.setCustomerid(customer);//封装客户对象
 
         System.out.println("===============================");
         System.out.println(form);
 
-        ValidatorUtil.validator(form);
         Result result = iCustomertraceService.add(form);
         return  result;
     }
