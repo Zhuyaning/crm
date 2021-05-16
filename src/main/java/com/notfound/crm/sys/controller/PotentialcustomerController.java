@@ -66,7 +66,6 @@ public class PotentialcustomerController {
         form.setInputuser(curr_user.getName());
         form.setInputtime(new Date());
         form.setStatus(0);
-        System.out.println(form);
         Result result = iPotentialcustomerService.add(form);
         return result;
     }
@@ -107,7 +106,6 @@ public class PotentialcustomerController {
 
     @RequestMapping("/tranceOne")
     public Result tranceOne(Integer id){
-        System.out.println("############"+id);
         //先拿到客户名字
         Result eQuery = iEmployeeService.query(id);
         System.out.println(eQuery);
