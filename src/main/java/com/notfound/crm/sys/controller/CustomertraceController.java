@@ -61,7 +61,11 @@ public class CustomertraceController {
         return result;
     }
 
-
+    /***
+     * 修改一条客户跟踪记录
+     * @param customertraceForm
+     * @return
+     */
     @RequestMapping("/update")
     public Result updateCustomertrace(CustomertraceForm customertraceForm){
         ValidatorUtil.validator(customertraceForm);
