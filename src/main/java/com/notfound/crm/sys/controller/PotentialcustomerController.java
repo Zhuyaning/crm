@@ -124,6 +124,7 @@ public class PotentialcustomerController {
 
         //封装上述两个数据的对象
         CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
+        customertraceVOOnly.setId(id.longValue());
         customertraceVOOnly.setName(name);
         customertraceVOOnly.setInfo(dataList);
 

@@ -11,9 +11,12 @@ import java.util.List;
 
 public class CustomertraceVOOnly {
 
+    private Long id;//客户id
+
     private String name;//客户名字
 
     private List info;//装跟踪方式List
+
 
     public String getName() {
         return name;
@@ -31,10 +34,19 @@ public class CustomertraceVOOnly {
         this.info = info;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "CustomertraceForm{" +
-                "name='" + name + '\'' +
+        return "CustomertraceVOOnly{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", info=" + info +
                 '}';
     }
