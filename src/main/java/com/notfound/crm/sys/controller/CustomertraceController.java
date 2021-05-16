@@ -31,6 +31,8 @@ public class CustomertraceController {
      */
     @RequestMapping("/add")
     public Result addCustomertrace(CustomertraceForm form){
+        System.out.println("===============================");
+        System.out.println(form);
         ValidatorUtil.validator(form);
         Result result = iCustomertraceService.add(form);
         return  result;
