@@ -3,7 +3,7 @@ package com.notfound.crm.sys.domain;
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author Wan_JiaLin
