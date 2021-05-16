@@ -1,13 +1,18 @@
 package com.notfound.crm.sys.controller;
 
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.CustomertraceForm;
 import com.notfound.crm.sys.service.ICustomertraceService;
+import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /***
  *   Created by IntelliJ IDEA.
@@ -30,9 +35,16 @@ public class CustomertraceController {
      * @return
      */
     @RequestMapping("/add")
-    public Result addCustomertrace(CustomertraceForm form){
+    public Result addCustomertrace(CustomertraceForm form,HttpSession session ){
+
+        //添加当前操作的员工对象和操作时间
+        form.setTraceitime(new Date());
+        Employee curr_user = (Employee) session.getAttribute("CURR_USER");
+        form.setInputuser(curr_user);
+
         System.out.println("===============================");
         System.out.println(form);
+
         ValidatorUtil.validator(form);
         Result result = iCustomertraceService.add(form);
         return  result;
