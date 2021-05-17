@@ -4,10 +4,13 @@ import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.notfound.crm.sys.domain.Employee;
+import com.notfound.crm.sys.domain.Role;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Wan_JiaLin
@@ -61,10 +64,10 @@ public class EmployeeVO extends Employee{
     @ColumnWidth(20)
     @ExcelProperty(value = "入职日期")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date hiredate;
+    private java.sql.Date hiredate;
 
     /**
-     * 状态：1 正常，0 离职
+     * 入职时间：1 正常，0 离职
      */
     @ExcelProperty(value = "状态")
     private Integer state;
@@ -80,6 +83,11 @@ public class EmployeeVO extends Employee{
      */
     @ExcelProperty(value = "角色")
     private String role;
+
+    /**
+     * 角色多对多关系连接
+     */
+    private List<Role> roleList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -159,5 +167,13 @@ public class EmployeeVO extends Employee{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 }
