@@ -39,14 +39,12 @@ public class CustomertraceController {
      */
     @RequestMapping("/add")
     public Result addCustomertrace(CustomertraceForm form,HttpSession session,Integer c_id){
-        System.out.println("=======================-------------------===================");
-        System.out.println(c_id);
+
         ValidatorUtil.validator(form);
         //操作客户
         Result  crr_customerResult = iPotentialcustomerService.query(c_id);
         Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
         System.out.println(customer);
-
         //操作时间
         form.setTraceitime(new Date());
         //操作员工
@@ -55,10 +53,7 @@ public class CustomertraceController {
         form.setInputuser(curr_user);//封装用户对象
         form.setCustomerid(customer);//封装客户对象
 
-        System.out.println("===============================");
-        System.out.println(form);
-
-        Result result = iCustomertraceService.add(form);
+        Result result = iCustomertraceService.add(form);//插入数据
         return  result;
     }
 
