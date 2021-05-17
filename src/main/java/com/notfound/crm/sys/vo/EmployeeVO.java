@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @ColumnWidth(20)
-public class EmployeeVO{
+public class EmployeeVO extends Employee{
     /**
      * ID
      */

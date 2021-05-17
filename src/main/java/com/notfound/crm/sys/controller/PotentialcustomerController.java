@@ -1,11 +1,9 @@
 package com.notfound.crm.sys.controller;
 
-import com.notfound.crm.common.base.CustomertraceVOOnly;
-import com.notfound.crm.common.base.PageInfo;
-import com.notfound.crm.common.base.Query;
-import com.notfound.crm.common.base.Result;
+import com.notfound.crm.common.base.*;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.domain.Employee;
+import com.notfound.crm.sys.domain.Potentialcustomer;
 import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.IDictionaryContentsService;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
@@ -16,7 +14,10 @@ import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.resource.HttpResource;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -59,16 +60,13 @@ public class PotentialcustomerController {
      */
     @RequestMapping("/add")
     public Result add(PotentialcustomerForm form, HttpSession session){
-
-        Employee curr_user =(Employee) session.getAttribute("CURR_USER");
+        ValidatorUtil.validator(form);//验证前端传入数据非空
+        EmployeeVO curr_user =(EmployeeVO) session.getAttribute("CURR_USER");
         System.out.println(curr_user);
-
         form.setSeller(curr_user.getName());
         form.setInputuser(curr_user.getName());
-        form.setInputtime(new java.sql.Date(System.currentTimeMillis()));
+        form.setInputtime(new Date());
         form.setStatus(0);
-
-        ValidatorUtil.validator(form);//验证前端传入数据非空
         Result result = iPotentialcustomerService.add(form);
         return result;
     }
@@ -108,13 +106,11 @@ public class PotentialcustomerController {
     }
 
     @RequestMapping("/tranceOne")
-    public Result tranceOne(Integer id){
-
+    public Result tranceOne(Integer id, HttpServletRequest request){
         //先拿到客户名字
         Result eQuery = iEmployeeService.query(id);
-        PageInfo data = (PageInfo) eQuery.getData();
-        List<Object> data1 = data.getData();
-        EmployeeVO employeeVO = (EmployeeVO) data1.get(0);
+        System.out.println(eQuery);
+        EmployeeVO employeeVO = (EmployeeVO)eQuery.getData();
         String name = employeeVO.getName();//客户名字
 
         //查询到所有跟踪方式
@@ -122,10 +118,11 @@ public class PotentialcustomerController {
         query.setKeyword("1106");
         Result result = dictionaryDetailsService.queryPage(query);
         PageInfo data3 = (PageInfo) result.getData();
-        List<Object> dataList = data.getData();//跟踪方式的list
+        List<Object> dataList = data3.getData();//跟踪方式的list
 
         //封装上述两个数据的对象
         CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
+        customertraceVOOnly.setId(id.longValue());
         customertraceVOOnly.setName(name);
         customertraceVOOnly.setInfo(dataList);
 
@@ -133,9 +130,36 @@ public class PotentialcustomerController {
         Result resultFinal = new Result();
         resultFinal.setData(customertraceVOOnly);
 
+        request.setAttribute("id",id);
+
         return resultFinal;
     }
 
+    @RequestMapping("/transfer")
+    public Result transfer(Integer id){
+        System.out.println("==========================================================================================");
+        System.out.println(id);
+        //拿到客户名字
+        Result  crr_customerResult = iPotentialcustomerService.query(id);
+        Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
+        String customerName = customer.getName();
+
+        String seller = customer.getSeller();
+
+        Result employees = iEmployeeService.queryPage(new Query());
+        PageInfo data = (PageInfo) employees.getData();
+        List<Object> objectList = data.getData();
+
+        CustomertraceVOOnly2 customertraceVOOnly2 = new CustomertraceVOOnly2();
+        customertraceVOOnly2.setId(id.longValue());
+        customertraceVOOnly2.setName(customerName);
+        customertraceVOOnly2.setSeller(seller);
+        customertraceVOOnly2.setInfo(objectList);
+
+        Result resultFinal = new Result();
+        resultFinal.setData(customertraceVOOnly2);
+        return resultFinal;
+    }
 
     /***
      * 客户新增的报表信息，

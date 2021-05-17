@@ -30,8 +30,8 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
-        insert into customertransfer(customer,transUser,oldSeller,newSeller,transReason)
-        values (#{customer},#{transUser},#{oldSeller},#{newSeller},#{transReason})
+        insert into customertransfer(customer,transUser,transTime,oldSeller,newSeller,transReason)
+        values (#{customer.name},#{transUser.name}, #{transTime},#{oldSeller},#{newSeller},#{transReason})
     </insert>
 
     <delete id="delete" parameterType="java.lang.Integer">
