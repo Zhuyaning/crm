@@ -33,12 +33,14 @@
 
     <!--    增加角色数据-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into role(name,sn,permission) values (#{name},#{sn},#{permission.name})
+        insert into role(name,sn,permission) values (#{name},#{sn},#{permission})
     </insert>
+
     <!--删除角色信息-->
     <delete id="delete" parameterType="java.lang.Integer">
         delete from role where id=#{id}
     </delete>
+
     <!--修改角色信息-->
     <update id="update" parameterType="com.notfound.crm.sys.domain.Role">
         update role
@@ -49,8 +51,8 @@
             <if test="sn != null &amp;&amp; sn != '' ">
                 sn=#{sn},
             </if>
-            <if test="permission.name != null &amp;&amp; permission.name != '' ">
-                permission=#{permission.name}
+            <if test="permission != null &amp;&amp; permission != '' ">
+                permission=#{permission}
             </if>
         </set>
         where id=#{id}
