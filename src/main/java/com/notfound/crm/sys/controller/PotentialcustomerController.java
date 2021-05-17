@@ -139,11 +139,11 @@ public class PotentialcustomerController {
     }
 
     @RequestMapping("/transfer")
-    public Result transfer(Integer c_id){
+    public Result transfer(Integer id){
         System.out.println("==========================================================================================");
-        System.out.println(c_id);
+        System.out.println(id);
         //拿到客户名字
-        Result  crr_customerResult = iPotentialcustomerService.query(c_id);
+        Result  crr_customerResult = iPotentialcustomerService.query(id);
         Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
         String customerName = customer.getName();
 
@@ -154,7 +154,7 @@ public class PotentialcustomerController {
         List<Object> objectList = data.getData();
 
         CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
-        customertraceVOOnly.setId(c_id.longValue());
+        customertraceVOOnly.setId(id.longValue());
         customertraceVOOnly.setName(customerName);
         customertraceVOOnly.setSeller(seller);
         customertraceVOOnly.setInfo(objectList);
