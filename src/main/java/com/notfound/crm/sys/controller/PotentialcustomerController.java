@@ -6,6 +6,7 @@ import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.domain.Employee;
+import com.notfound.crm.sys.domain.Potentialcustomer;
 import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.IDictionaryContentsService;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
@@ -137,6 +138,28 @@ public class PotentialcustomerController {
         return resultFinal;
     }
 
+    @RequestMapping("/transfer")
+    public Result transfer(Integer c_id){
+        //拿到客户名字
+        Result  crr_customerResult = iPotentialcustomerService.query(c_id);
+        Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
+        String customerName = customer.getName();
+
+        String seller = customer.getSeller();
+
+        Result employees = iEmployeeService.queryPage(new Query());
+        PageInfo data = (PageInfo) employees.getData();
+        List<Object> objectList = data.getData();
+
+        CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
+        customertraceVOOnly.setId(c_id.longValue());
+        customertraceVOOnly.setName(customerName);
+        customertraceVOOnly.setInfo(objectList);
+
+        Result resultFinal = new Result();
+        resultFinal.setData(customertraceVOOnly);
+        return resultFinal;
+    }
 
     /***
      * 客户新增的报表信息，

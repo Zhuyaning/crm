@@ -8,7 +8,6 @@ import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.CustomertraceForm;
 import com.notfound.crm.sys.service.ICustomertraceService;
-import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,10 +27,27 @@ import java.util.Date;
 @RestController
 public class CustomertraceController {
 
-    @Autowired
+
     ICustomertraceService iCustomertraceService;
-    @Autowired
+
     IPotentialcustomerService iPotentialcustomerService;
+
+    public ICustomertraceService getiCustomertraceService() {
+        return iCustomertraceService;
+    }
+    @Autowired
+    public void setiCustomertraceService(ICustomertraceService iCustomertraceService) {
+        this.iCustomertraceService = iCustomertraceService;
+    }
+
+    public IPotentialcustomerService getiPotentialcustomerService() {
+        return iPotentialcustomerService;
+    }
+    @Autowired
+    public void setiPotentialcustomerService(IPotentialcustomerService iPotentialcustomerService) {
+        this.iPotentialcustomerService = iPotentialcustomerService;
+    }
+
     /***
      * 添加一条跟踪记录。
      * @param form
@@ -47,7 +63,7 @@ public class CustomertraceController {
         System.out.println(customer);
         //操作时间
         form.setTraceitime(new Date());
-        //操作员工
+        //操作员工,从Session中直接取，在session中为EmployeeVO类型，强制转型成Employee
         Employee curr_user = (Employee) session.getAttribute("CURR_USER");
 
         form.setInputuser(curr_user);//封装用户对象
