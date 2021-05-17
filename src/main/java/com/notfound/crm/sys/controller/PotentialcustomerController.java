@@ -140,6 +140,8 @@ public class PotentialcustomerController {
 
     @RequestMapping("/transfer")
     public Result transfer(Integer c_id){
+        System.out.println("==========================================================================================");
+        System.out.println(c_id);
         //拿到客户名字
         Result  crr_customerResult = iPotentialcustomerService.query(c_id);
         Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
@@ -154,6 +156,7 @@ public class PotentialcustomerController {
         CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
         customertraceVOOnly.setId(c_id.longValue());
         customertraceVOOnly.setName(customerName);
+        customertraceVOOnly.setSeller(seller);
         customertraceVOOnly.setInfo(objectList);
 
         Result resultFinal = new Result();

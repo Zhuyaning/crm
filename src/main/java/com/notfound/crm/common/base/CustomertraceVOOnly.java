@@ -15,6 +15,8 @@ public class CustomertraceVOOnly {
 
     private String name;//客户名字
 
+    private String seller;
+
     private List info;//装跟踪方式List
 
 
@@ -42,11 +44,20 @@ public class CustomertraceVOOnly {
         this.id = id;
     }
 
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
+
     @Override
     public String toString() {
         return "CustomertraceVOOnly{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", seller='" + seller + '\'' +
                 ", info=" + info +
                 '}';
     }
