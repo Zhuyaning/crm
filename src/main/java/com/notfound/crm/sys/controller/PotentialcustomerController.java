@@ -1,9 +1,6 @@
 package com.notfound.crm.sys.controller;
 
-import com.notfound.crm.common.base.CustomertraceVOOnly;
-import com.notfound.crm.common.base.PageInfo;
-import com.notfound.crm.common.base.Query;
-import com.notfound.crm.common.base.Result;
+import com.notfound.crm.common.base.*;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.domain.Potentialcustomer;
@@ -153,14 +150,14 @@ public class PotentialcustomerController {
         PageInfo data = (PageInfo) employees.getData();
         List<Object> objectList = data.getData();
 
-        CustomertraceVOOnly customertraceVOOnly = new CustomertraceVOOnly();
-        customertraceVOOnly.setId(id.longValue());
-        customertraceVOOnly.setName(customerName);
-        customertraceVOOnly.setSeller(seller);
-        customertraceVOOnly.setInfo(objectList);
+        CustomertraceVOOnly2 customertraceVOOnly2 = new CustomertraceVOOnly2();
+        customertraceVOOnly2.setId(id.longValue());
+        customertraceVOOnly2.setName(customerName);
+        customertraceVOOnly2.setSeller(seller);
+        customertraceVOOnly2.setInfo(objectList);
 
         Result resultFinal = new Result();
-        resultFinal.setData(customertraceVOOnly);
+        resultFinal.setData(customertraceVOOnly2);
         return resultFinal;
     }
 
