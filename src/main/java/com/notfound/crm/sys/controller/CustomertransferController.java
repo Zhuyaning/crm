@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,33 +58,9 @@ public class CustomertransferController {
     @RequestMapping("/insert")
     @ResponseBody
     public Result insert(CustomertransferFrom customertransferFrom, PotentialcustomerForm potentialcustomerForm, Integer id, Employee employee){
-//        Result query = employeeService.query(id);
-////        String customer = object.get("customer").toString();
-////        String transUser = object.get("transUser").toString();
-//        Result query1 = potentialcustomerService.query(id);
-//        ValidatorUtil.validator(customertransferFrom);
-////        potentialcustomerForm.setName(customer);
-////        employee.setName(transUser);
-////        customertransferFrom.setCustomer(potentialcustomerForm);
-////        customertransferFrom.setTransUser(employee);
-//        Result add = customertransferService.add(customertransferFrom);
-//        ValidatorUtil.validator(potentialcustomerForm);
-//        Result update = potentialcustomerService.update(potentialcustomerForm);
-//        Map<String,Result> map = new HashMap<String,Result>();
-//        map.put("query1",query1);
-//        map.put("query",query);
-//        map.put("add",add);
-//        map.put("update",update);
-//        Result result = new Result();
-//        result.setData(map);
-//        Customertransfer customertransfer = new Customertransfer();
-//        Potentialcustomer customer = new Potentialcustomer();
-//        customer.setName(customertransferFrom.getCustomer());
-//        customertransfer.setCustomer(customer);
-//        customertransfer.setTransReason(customertransferFrom.getTransReason());
-//
-//        customertransferService.inputAndUpdate(customertransfer,potentialcustomerForm);
+
         potentialcustomerForm.setSeller(customertransferFrom.getNewSeller());
+        customertransferFrom.setTransTime(new Date());
         Result result = customertransferService.inputAndUpdate(customertransferFrom, potentialcustomerForm);
         return result;
     }
