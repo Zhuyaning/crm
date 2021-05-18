@@ -1,6 +1,7 @@
 package com.notfound.crm.sys.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.alibaba.excel.annotation.format.DateTimeFormat;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class Employee {
     /**
      * 入职日期
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat("yyyy-MM-dd")
     private Date hiredate;
 
     /**
@@ -119,7 +120,7 @@ public class Employee {
         this.dept = dept;
     }
 
-    public Date getHiredate() {
+    public java.util.Date getHiredate() {
         return hiredate;
     }
 

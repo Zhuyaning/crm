@@ -30,6 +30,16 @@
     where id = #{id}
   </select>
 
+   <select id="queryByIdList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
+    where id in
+    <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+        #{id}
+    </foreach>
+  </select>
+
 <!--  &lt;!&ndash;给Role的外加SQL&ndash;&gt;-->
 <!--  <select id="queryByRoleId" resultMap="BaseResultMap">-->
 <!--    select-->

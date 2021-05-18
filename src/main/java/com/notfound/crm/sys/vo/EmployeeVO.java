@@ -2,14 +2,14 @@ package com.notfound.crm.sys.vo;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
 import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.domain.Role;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Data
 @ColumnWidth(20)
-public class EmployeeVO extends Employee{
+public class EmployeeVO{
     /**
      * ID
      */
@@ -63,8 +63,8 @@ public class EmployeeVO extends Employee{
      */
     @ColumnWidth(20)
     @ExcelProperty(value = "入职日期")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private java.sql.Date hiredate;
+    @DateTimeFormat("yyyy-MM-dd")
+    private Date hiredate;
 
     /**
      * 入职时间：1 正常，0 离职
@@ -87,6 +87,7 @@ public class EmployeeVO extends Employee{
     /**
      * 角色多对多关系连接
      */
+    @ExcelIgnore
     private List<Role> roleList = new ArrayList<>();
 
     public Integer getId() {

@@ -42,4 +42,11 @@ public interface IEmployeeService extends IBaseService<EmployeeForm>{
      */
     Result addBatch(List<EmployeeVO> data);
 
+    /**
+     * 根据id列表查询数据（此处供前端导出选中数据时使用）
+     * @param ids
+     * @return
+     */
+    Result queryByIdList(Integer[] ids);
+
 }

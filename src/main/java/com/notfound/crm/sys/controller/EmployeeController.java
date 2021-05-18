@@ -2,6 +2,7 @@ package com.notfound.crm.sys.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.CircleCaptcha;
+import com.alibaba.fastjson.JSON;
 import com.notfound.crm.common.base.PageInfo;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
@@ -113,9 +114,9 @@ public class EmployeeController implements BeanFactoryAware {
     @ResponseBody
     //http://localhost:8888/sys/deleteByEmployeeIdList
     public Result deleteByEmployeeIdList(Integer[] ids){
-        System.out.println(Arrays.toString(ids));
+        System.out.println("+++++++++++++++++++++++++++++"+ JSON.toJSONString(ids));
         Result result = employeeServiceImpl.deleteByIdList(ids);
-        return result;
+        return new Result();
     }
 
     @RequestMapping("/updateEmployee")
@@ -131,11 +132,10 @@ public class EmployeeController implements BeanFactoryAware {
     @RequestMapping("/exportExcel.do")
     @ResponseBody
     //http://localhost:8888/sys/exportExcel.do
-    public void exportExcel(HttpServletResponse response, Query query){
+    public void exportExcel(HttpServletResponse response, Integer[] ids){
 
-        Result result = employeeServiceImpl.queryPage(query);
-        PageInfo data = (PageInfo) result.getData();
-        List<Object> listdata = data.getData();
+        Result result = employeeServiceImpl.queryByIdList(ids);
+        List<Object> listdata = (List<Object>) result.getData();
 
         EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
         excelUtil.exportExcel(response, "员工表", EmployeeVO.class, listdata);

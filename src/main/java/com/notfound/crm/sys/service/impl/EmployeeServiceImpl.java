@@ -1,5 +1,6 @@
 package com.notfound.crm.sys.service.impl;
 
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.domain.Role;
 import com.notfound.crm.sys.mapper.EmployeeMapper;
 import com.notfound.crm.common.base.CodeMsg;
@@ -126,5 +127,13 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
             }
         }
         return new Result();
+    }
+
+    @Override
+    public Result queryByIdList(Integer[] ids) {
+
+        List<EmployeeVO> employee = employeeMapper.queryByIdList(ids);
+
+        return new Result(employee);
     }
 }

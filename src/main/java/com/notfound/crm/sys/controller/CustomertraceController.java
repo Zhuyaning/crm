@@ -21,12 +21,9 @@ import java.util.Date;
  *   Date: 2021/5/12
  *   Time: 8:43
  */
-
-
 @RequestMapping("/customertrace")
 @RestController
 public class CustomertraceController {
-
 
     ICustomertraceService iCustomertraceService;
 

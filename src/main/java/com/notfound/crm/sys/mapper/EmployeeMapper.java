@@ -1,9 +1,12 @@
 package com.notfound.crm.sys.mapper;
 
 import com.notfound.crm.common.mapper.BaseMapper;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.EmployeeForm;
 import com.notfound.crm.sys.vo.EmployeeVO;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface EmployeeMapper extends BaseMapper<EmployeeForm, EmployeeVO> {
     /**
@@ -54,4 +57,11 @@ public interface EmployeeMapper extends BaseMapper<EmployeeForm, EmployeeVO> {
      * @return
      */
     int deleteEmployeeAndRoleRelation(Integer id);
+
+    /**
+     * 根据id列表查询数据
+     * @param ids
+     * @return
+     */
+    List<EmployeeVO> queryByIdList(@Param("ids") Integer[] ids);
 }
