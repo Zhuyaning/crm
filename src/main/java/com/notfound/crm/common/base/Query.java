@@ -75,4 +75,15 @@ public class Query {
     public void setType(Integer type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Query{" +
+                "currentPage=" + currentPage +
+                ", pageSize=" + pageSize +
+                ", start=" + start +
+                ", keyword='" + keyword + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

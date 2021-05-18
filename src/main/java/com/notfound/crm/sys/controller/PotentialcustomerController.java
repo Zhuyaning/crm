@@ -2,7 +2,6 @@ package com.notfound.crm.sys.controller;
 
 import com.notfound.crm.common.base.*;
 import com.notfound.crm.common.validator.ValidatorUtil;
-import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.domain.Potentialcustomer;
 import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.IDictionaryContentsService;
@@ -14,10 +13,8 @@ import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.resource.HttpResource;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -173,3 +170,4 @@ public class PotentialcustomerController {
         return result;
     }
 }
+

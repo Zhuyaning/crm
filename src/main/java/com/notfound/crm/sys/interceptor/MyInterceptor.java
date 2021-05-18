@@ -5,6 +5,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * @author Wan_JiaLin
@@ -15,9 +16,9 @@ public class MyInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if(request.getSession().getAttribute("CURR_USER") == null){ //验证是否登录，如果为空，则用户未登录
-            return false;
-        }
+//        if(request.getSession().getAttribute("CURR_USER") == null){ //验证是否登录，如果为空，则用户未登录
+//            return false;
+//        }
         System.out.println("获取的cookies："+request.getCookies());
         System.out.println("SessionId的值为:"+request.getSession().getId());
         return true;
