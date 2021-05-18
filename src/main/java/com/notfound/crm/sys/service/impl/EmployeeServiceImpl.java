@@ -49,10 +49,10 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
         if(data == null){   //查询记过如果为空，则该用户名错误
             return new Result(CodeMsg.LOGIN_FAILD_WRONG_USERNAME);    //登录失败，用户名错误
         }else { //查询结果不为空，证明该用户名正确
-
-            Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(data.getName(),data.getPassword());
-            subject.login(token);
+//
+//            Subject subject = SecurityUtils.getSubject();
+//            UsernamePasswordToken token = new UsernamePasswordToken(data.getName(),data.getPassword());
+//            subject.login(token);
 
             //判断该用户名对应的密码是否与数据库中的密码相同，如果相同，那么则允许该用户登录系统，若不相同则返回错误信息
             if(data.getPassword().equals(employeeForm.getPassword())){
