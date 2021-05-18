@@ -88,6 +88,7 @@ public class EmployeeController implements BeanFactoryAware {
     @ResponseBody
     //http://localhost:8888/sys/queryPage
     public Result queryPage(Query query){
+        System.out.println("模糊查询条件是："+query);
 
         Result result = employeeServiceImpl.queryPage(query);
         return result;
