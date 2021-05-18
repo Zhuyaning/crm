@@ -12,7 +12,7 @@
 
     <!--    根据用户名称查询数据，这个sql是给shiro拿来做验证的-->
     <select id="queryRoleByUserName" resultMap="BaseResultMap" resultSets="java.util.Set" resultType="string">
-        select role.id,role.name,role.sn,role.permission
+        select role.name
         from employee join employee_role on employee.id=employee_role.eid
         join role on employee_role.rid=role.id
         where employee.name=#{username}

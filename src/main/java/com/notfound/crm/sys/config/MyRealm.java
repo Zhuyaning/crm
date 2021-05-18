@@ -12,7 +12,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Wen
@@ -34,6 +36,11 @@ public class MyRealm extends AuthorizingRealm {
 
     /**
      * 获取授权信息,给授权器提供授权数据
+     * doGetAuthorizationInfo执行时机有三个，如下：
+     *  1、subject.hasRole(“admin”) 或 subject.isPermitted(“admin”)：自己去调用这个是否有什么角色或者是否有什么权限的时候；
+     *  2、@RequiresRoles("admin") ：在方法上加注解的时候；
+     *  3、@shiro.hasPermission name = "admin"/@shiro.hasPermission："dustin:test"在页面上加shiro标签的时候，
+     *      即进这个页面的时候扫描到有这个标签的时候。
      * @param principalCollection
      * @return
      */
@@ -49,6 +56,7 @@ public class MyRealm extends AuthorizingRealm {
 
         //查到权限数据，返回
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
         info.setRoles(roleName);
         //填充权限
         info.setStringPermissions(permissions);

@@ -8,5 +8,10 @@ import java.util.Set;
 
 public interface PermissionsMapper extends BaseMapper<PermissionsForm, PermissionsVO> {
 
-    Set<String> queryPermissionsByUsername(String username)throws Exception;
+    /**
+     *根据username查找到对应权限后给shiro做验证
+     * @param username
+     * @return
+     */
+    Set<String> queryPermissionsByUsername(String username);
 }

@@ -9,12 +9,12 @@ import java.util.Set;
 
 public interface RoleMapper extends BaseMapper<RoleForm, RoleVO> {
     /**
-     * 根据username查找到role后给shiro做2验证
+     * 根据username查找到role后给shiro做验证
      * @param username
      * @return
      * @throws Exception
      */
-    Set<String> queryRoleByUserName(String username)throws Exception;
+    Set<String> queryRoleByUserName(String username);
 
     /**
      * 增加角色和权限中间表信息
