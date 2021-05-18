@@ -1,9 +1,10 @@
 package com.notfound.crm.sys.domain;
 
-import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Wan_JiaLin
@@ -61,6 +62,11 @@ public class Employee {
      * 角色
      */
     private String role;
+
+    /**
+     * 角色多对多关系连接
+     */
+    private List<Role> roleList = new ArrayList<>();
 
     public Employee() {
     }
@@ -145,6 +151,14 @@ public class Employee {
         this.role = role;
     }
 
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -153,11 +167,12 @@ public class Employee {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
-                ", dept=" + dept +
+                ", dept='" + dept + '\'' +
                 ", hiredate=" + hiredate +
                 ", state=" + state +
                 ", admin=" + admin +
-                ", role=" + role +
+                ", role='" + role + '\'' +
+                ", roleList=" + roleList +
                 '}';
     }
 }

@@ -1,6 +1,5 @@
 package com.notfound.crm.sys.controller;
 
-
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Zheng_xiaolong
@@ -20,7 +17,7 @@ import java.util.Map;
  * @Description 部门(department)的web层
  */
 @Controller
-@RequestMapping("depart")
+@RequestMapping("/depart")
 public class DepartmentController {
     @Autowired
     private IDepartmentService departmentService;
