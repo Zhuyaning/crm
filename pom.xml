@@ -180,6 +180,51 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.76</version>
     </dependency>
+
+    <!-- shiro 包-->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-core</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-web</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-ehcache</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-quartz</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>com.github.theborakompanioni</groupId>-->
+<!--      <artifactId>thymeleaf-extras-shiro</artifactId>-->
+<!--      <version>2.0.0</version>-->
+<!--    </dependency>-->
+
+    <!-- freemarker jar -->
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>2.3.20</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -239,7 +284,7 @@
         <artifactId>tomcat7-maven-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <port>8080</port>
+          <port>8888</port>
           <path>/</path>
           <uriEncoding>UTF-8</uriEncoding>
         </configuration>

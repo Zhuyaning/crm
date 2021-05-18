@@ -7,6 +7,17 @@
         <result column="expression" jdbcType="VARCHAR" property="expression" />
     </resultMap>
 
+    <!--    查询所有权限数据，这个sql是给shiro拿来做验证的-->
+    <select id="queryPermissionsByUsername" resultSets="java.util.Set" resultType="string">
+        select p.id,p.name,p.expression
+        from permissions as p
+        join role_permissions as rp on p.id = rp.pid
+        join role as r on rp.rid  = r.id
+        join employee_role  as er on er.rid=r.id
+        join employee as e on er.eid=e.id
+        where e.name=#{username}
+    </select>
+
     <!--    查询所有权限-->
     <select id="selectList" resultMap="BaseResultMap">
         select id,name,expression from permissions
@@ -19,8 +30,9 @@
 
     <!--    给role的外SQL-->
     <select id="queryByRole" resultMap="BaseResultMap">
-        select id,name,expression from permissions
-        where name=#{role.permission}
+        select p.id,p.name,p.expression from permissions as p
+        join role_permissions  as rp on p.id=rp.pid
+        where rp.rid=#{id}
     </select>
 
     <!--    添加权限-->
@@ -46,4 +58,9 @@
         </set>
         where id=#{id}
     </update>
+
+    <!--    根据角色的权限名查询权限信息-->
+    <select id="queryPermissionByRolePermission">
+        select id,name,expression from permissions where name=#{role.permission}
+    </select>
 </mapper>

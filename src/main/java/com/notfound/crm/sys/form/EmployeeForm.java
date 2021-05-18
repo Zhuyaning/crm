@@ -1,10 +1,13 @@
 package com.notfound.crm.sys.form;
 
+import com.notfound.crm.sys.domain.Role;
 import org.hibernate.validator.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Wan_JiaLin
@@ -75,6 +78,11 @@ public class EmployeeForm{
      * 角色name连接
      */
     private String role;
+
+    /**
+     * 角色多对多关系连接
+     */
+    private List<Role> roleList = new ArrayList<>();
 
     public EmployeeForm() {
     }
@@ -157,5 +165,13 @@ public class EmployeeForm{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 }

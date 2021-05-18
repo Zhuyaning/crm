@@ -1,13 +1,9 @@
 package com.notfound.crm.sys.mapper;
 
-import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.mapper.BaseMapper;
-import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.EmployeeForm;
 import com.notfound.crm.sys.vo.EmployeeVO;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface EmployeeMapper extends BaseMapper<EmployeeForm, EmployeeVO> {
     /**
@@ -37,4 +33,25 @@ public interface EmployeeMapper extends BaseMapper<EmployeeForm, EmployeeVO> {
      * @return
      */
     int addBatch(EmployeeVO data);
+
+    /**
+     * 通过name查询
+     * @param username
+     * @return
+     */
+    EmployeeVO queryEmployeeByName(String username)throws Exception;
+
+    /**
+     * 增加一条员工和角色中间表信息
+     * @param
+     * @return
+     */
+    int insertEmployeeAndRoleRelation(@Param("eid")Integer eid, @Param("rid")Integer rid);
+
+    /**
+     * 删除一条员工和角色中间表信息
+     * @param
+     * @return
+     */
+    int deleteEmployeeAndRoleRelation(Integer id);
 }
