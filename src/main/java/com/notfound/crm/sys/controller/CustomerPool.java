@@ -3,6 +3,7 @@ package com.notfound.crm.sys.controller;
 import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
+import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.form.CustomertransferFrom;
 import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.ICustomertransferService;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,27 +44,21 @@ public class CustomerPool {
     }
 
     /**
-     * 新增客户移交记录，同时修改相应内容
+     * 新增客户移交记录，同时修改相应内容 移交功能
      * @param customertransferFrom
      * @param potentialcustomerForm
      * @return
      */
     @RequestMapping("/insert")
     @ResponseBody
-    public Result insert(CustomertransferFrom customertransferFrom, PotentialcustomerForm potentialcustomerForm, Integer id){
-        Result query = employeeService.query(id);
-        Result query1 = potentialcustomerService.query(id);
-        ValidatorUtil.validator(customertransferFrom);
-        Result add = customertransferService.add(customertransferFrom);
-        ValidatorUtil.validator(potentialcustomerForm);
-        Result update = potentialcustomerService.update(potentialcustomerForm);
-        Map<String,Result> map = new HashMap<String,Result>();
-        map.put("query1",query1);
-        map.put("query",query);
-        map.put("add",add);
-        map.put("update",update);
-        Result result = new Result();
-        result.setData(map);
+    public Result insert(CustomertransferFrom customertransferFrom, PotentialcustomerForm potentialcustomerForm, Integer id, HttpSession session){
+        Employee curr_user = (Employee) session.getAttribute("CURR_USER");
+
+        potentialcustomerForm.setSeller(customertransferFrom.getNewSeller());
+
+        customertransferFrom.setTransUser(curr_user.getName());
+        customertransferFrom.setTransTime(new Date());
+        Result result = customertransferService.inputAndUpdate(customertransferFrom, potentialcustomerForm);
         return result;
     }
 

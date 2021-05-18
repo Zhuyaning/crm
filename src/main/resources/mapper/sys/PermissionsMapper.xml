@@ -9,7 +9,7 @@
 
     <!--    查询所有权限数据，这个sql是给shiro拿来做验证的-->
     <select id="queryPermissionsByUsername" resultSets="java.util.Set" resultType="string">
-        select p.id,p.name,p.expression
+        select p.expression
         from permissions as p
         join role_permissions as rp on p.id = rp.pid
         join role as r on rp.rid  = r.id
