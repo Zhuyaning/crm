@@ -30,6 +30,7 @@ public class Customertrace {
     /**
     * 跟进效果：1 差，2 中，3 优 
     */
+
     private Integer traceresult;
 
     /**
