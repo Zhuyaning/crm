@@ -11,7 +11,7 @@
         <result column="newSeller" property="newSeller"/>
         <result column="transReason" property="transReason"/>
     </resultMap>
-    <select id="selectList" resultMap="BasCusMap">
+    <select id="selectList" resultType="com.notfound.crm.sys.vo.CustomertransferVO">
         select c.id,p.name as p_name,e.name as e_name,c.transTime,c.oldSeller,
                c.newSeller,c.transReason
         from customertransfer as c inner join employee as e inner join potentialcustomer as p
@@ -31,7 +31,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
         insert into customertransfer(customer,transUser,transTime,oldSeller,newSeller,transReason)
-        values (#{customer.name},#{transUser.name}, #{transTime},#{oldSeller},#{newSeller},#{transReason})
+        values (#{customer},#{transUser}, #{transTime},#{oldSeller},#{newSeller},#{transReason})
     </insert>
 
     <delete id="delete" parameterType="java.lang.Integer">

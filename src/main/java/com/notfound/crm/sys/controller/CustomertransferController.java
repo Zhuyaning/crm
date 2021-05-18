@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -57,9 +58,12 @@ public class CustomertransferController {
      */
     @RequestMapping("/insert")
     @ResponseBody
-    public Result insert(CustomertransferFrom customertransferFrom, PotentialcustomerForm potentialcustomerForm, Integer id, Employee employee){
+    public Result insert(CustomertransferFrom customertransferFrom, PotentialcustomerForm potentialcustomerForm, Integer id, HttpSession session){
+        Employee curr_user = (Employee) session.getAttribute("CURR_USER");
 
         potentialcustomerForm.setSeller(customertransferFrom.getNewSeller());
+
+        customertransferFrom.setTransUser(curr_user.getName());
         customertransferFrom.setTransTime(new Date());
         Result result = customertransferService.inputAndUpdate(customertransferFrom, potentialcustomerForm);
         return result;
