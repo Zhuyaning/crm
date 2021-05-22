@@ -2,7 +2,7 @@ package com.notfound.crm.sys.vo;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
 
 /***
  *   Created by IntelliJ IDEA.
