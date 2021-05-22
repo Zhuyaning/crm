@@ -185,7 +185,7 @@
     where id = #{id}
   </update>
     <resultMap id="baseResultMap2" type="com.notfound.crm.sys.vo.QueryPageReportVO">
-          <result column="groupType" property="name"/>
+          <result column="groupType" property="groupType"/>
           <result column="num" property="num"/>
     </resultMap>
 <!--报表的模糊查询-->
