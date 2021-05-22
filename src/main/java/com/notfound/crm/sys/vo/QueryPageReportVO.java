@@ -1,5 +1,7 @@
 package com.notfound.crm.sys.vo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /***
@@ -15,6 +17,7 @@ public class QueryPageReportVO {
 
   private int  num;
 
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date inputTime;
 
   public String getName() {
