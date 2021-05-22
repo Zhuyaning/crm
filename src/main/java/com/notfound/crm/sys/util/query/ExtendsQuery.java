@@ -31,7 +31,7 @@ public class ExtendsQuery extends Query {
     /***
      *查询部门所有潜在客户的
      */
-    private Long deptId;
+    private String groupTypeStr;
 
     public Date getStartTime() {
         return startTime;
@@ -57,12 +57,12 @@ public class ExtendsQuery extends Query {
         this.self = self;
     }
 
-    public Long getDeptId() {
-        return deptId;
+    public String getDeptId() {
+        return groupTypeStr;
     }
 
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
+    public void setDeptId(String deptId) {
+        this.groupTypeStr = deptId;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ExtendsQuery extends Query {
                 "startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", self=" + self +
-                ", deptId=" + deptId +
+                ", deptId=" + groupTypeStr +
                 '}';
     }
 }

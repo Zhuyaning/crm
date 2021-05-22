@@ -17,8 +17,6 @@ public class QueryPageReportVO {
 
   private int  num;
 
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
-  private Date inputTime;
 
   public String getName() {
     return name;
@@ -36,20 +34,12 @@ public class QueryPageReportVO {
     this.num = num;
   }
 
-  public Date getInputTime() {
-    return inputTime;
-  }
-
-  public void setInputTime(Date inputTime) {
-    this.inputTime = inputTime;
-  }
 
   @Override
   public String toString() {
     return "QueryPageReportVO{" +
             "name='" + name + '\'' +
             ", num=" + num +
-            ", inputTime=" + inputTime +
             '}';
   }
 }

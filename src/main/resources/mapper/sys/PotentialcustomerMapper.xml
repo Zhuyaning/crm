@@ -185,21 +185,17 @@
     where id = #{id}
   </update>
     <resultMap id="baseResultMap2" type="com.notfound.crm.sys.vo.QueryPageReportVO">
-            <result column="name" property="name"/>
-            <result column="num" property="num"/>
-            <result column="inputTime" property="inputTime"/>
+          <result column="groupType" property="name"/>
+          <result column="num" property="num"/>
     </resultMap>
 <!--报表的模糊查询-->
     <select id="queryPageReport" resultMap="baseResultMap2">
-        select count(potentialcustomer.id) as num,employee.name as name,potentialcustomer.inputTime as inputTime
+        select ${groupTypeStr} as groupType,
+         count(potentialcustomer.id) as num
         from potentialcustomer
         inner join employee
         on potentialcustomer.inputUser = employee.name
         <where>
-
-            <if test="deptId != null ">
-                employee.dept = #{deptId}
-            </if>
 
             <if test="startTime !=null">
                and potentialcustomer.inputTime &gt; #{startTime}
@@ -214,9 +210,7 @@
             </if>
 
         </where>
-
-            GROUP BY employee.name
-            order by employee.name asc
+            GROUP BY groupType
     </select>
 
 <!--&lt;!&ndash;  根据id修改数据&ndash;&gt;-->
