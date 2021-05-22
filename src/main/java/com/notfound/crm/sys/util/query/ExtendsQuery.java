@@ -29,9 +29,10 @@ public class ExtendsQuery extends Query {
     private Integer self;
 
     /***
-     *查询部门所有潜在客户的
+     *分组条件
      */
     private String groupTypeStr;
+
 
     public Date getStartTime() {
         return startTime;
@@ -57,12 +58,12 @@ public class ExtendsQuery extends Query {
         this.self = self;
     }
 
-    public String getDeptId() {
+    public String getGroupTypeStr() {
         return groupTypeStr;
     }
 
-    public void setDeptId(String deptId) {
-        this.groupTypeStr = deptId;
+    public void setGroupTypeStr(String groupTypeStr) {
+        this.groupTypeStr = groupTypeStr;
     }
 
     @Override
