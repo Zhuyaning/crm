@@ -13,17 +13,16 @@ import java.sql.Date;
 
 public class QueryPageReportVO {
 
-  private String name;
+  private String groupType;
 
   private int  num;
 
-
-  public String getName() {
-    return name;
+  public String getGroupType() {
+    return groupType;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setGroupType(String groupType) {
+    this.groupType = groupType;
   }
 
   public int getNum() {
@@ -34,11 +33,10 @@ public class QueryPageReportVO {
     this.num = num;
   }
 
-
   @Override
   public String toString() {
     return "QueryPageReportVO{" +
-            "name='" + name + '\'' +
+            "groupType='" + groupType + '\'' +
             ", num=" + num +
             '}';
   }
