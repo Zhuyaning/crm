@@ -187,10 +187,11 @@
     <resultMap id="baseResultMap2" type="com.notfound.crm.sys.vo.QueryPageReportVO">
             <result column="name" property="name"/>
             <result column="num" property="num"/>
+            <result column="inputTime" property="inputTime"/>
     </resultMap>
 <!--报表的模糊查询-->
     <select id="queryPageReport" resultMap="baseResultMap2">
-        select count(potentialcustomer.id) as num,employee.name as name
+        select count(potentialcustomer.id) as num,employee.name as name,potentialcustomer.inputTime as inputTime
         from potentialcustomer
         inner join employee
         on potentialcustomer.inputUser = employee.name
