@@ -5,6 +5,7 @@ import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.RoleForm;
 import com.notfound.crm.sys.service.IRoleService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class RoleController {
     private IRoleService roleService;
 
     //查询全部角色信息
+    @RequiresPermissions("role:queryPage")
     @RequestMapping("/queryPage")
     @ResponseBody
     public Result queryPage(Query query){

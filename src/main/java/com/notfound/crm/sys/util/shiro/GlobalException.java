@@ -1,10 +1,9 @@
 package com.notfound.crm.sys.util.shiro;
 
-import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Wen
@@ -13,15 +12,23 @@ import javax.servlet.http.HttpServletResponse;
  */
 @ControllerAdvice
 public class GlobalException {
-    @ExceptionHandler
-    public String doException(Exception e, HttpServletResponse response){
-        if(e instanceof AuthorizationException){
-            try {
-                response.sendRedirect("http://localhost:8888/depart/list");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-        return null;
+
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseBody
+    public String doException(Exception e){
+        return "对不起，你没有权限！";
     }
+
 }
+
+//public class GlobalException implements HandlerExceptionResolver {
+//
+//    @Override
+//    public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+//        if (e instanceof UnauthorizedException) {
+//            ModelAndView mv = new ModelAndView("/depart/list");
+//            return mv;
+//        }
+//        return null;
+//    }
+//}

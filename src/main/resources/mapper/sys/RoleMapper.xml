@@ -51,8 +51,8 @@
             <if test="sn != null &amp;&amp; sn != '' ">
                 sn=#{sn},
             </if>
-            <if test="permission != null &amp;&amp; permission != '' ">
-                permission=#{permission}
+            <if test="permissions != null &amp;&amp; permissions != '' ">
+                permission=#{permissions.name}
             </if>
         </set>
         where id=#{id}
