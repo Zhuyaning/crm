@@ -134,25 +134,23 @@ public class PotentialcustomerController {
 
     @RequestMapping("/transfer")
     public Result transfer(Integer id){
-        System.out.println("==========================================================================================");
-        System.out.println(id);
         //拿到客户名字
         Result  crr_customerResult = iPotentialcustomerService.query(id);
         Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
         String customerName = customer.getName();
-
+        //拿到负责人名字
         String seller = customer.getSeller();
-
+        //拿到员工列表
         Result employees = iEmployeeService.queryPage(new Query());
         PageInfo data = (PageInfo) employees.getData();
         List<Object> objectList = data.getData();
-
+        //封装上述数据
         CustomertraceVOOnly2 customertraceVOOnly2 = new CustomertraceVOOnly2();
         customertraceVOOnly2.setId(id.longValue());
         customertraceVOOnly2.setName(customerName);
         customertraceVOOnly2.setSeller(seller);
         customertraceVOOnly2.setInfo(objectList);
-
+        //封装到统一返回结果
         Result resultFinal = new Result();
         resultFinal.setData(customertraceVOOnly2);
         return resultFinal;
