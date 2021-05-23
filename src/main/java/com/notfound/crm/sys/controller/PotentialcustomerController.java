@@ -159,7 +159,7 @@ public class PotentialcustomerController {
     /***
      * 客户新增的报表信息，
      * @param query
-     * @return 返回  {员工名：新增客户数量} list
+     * @return 返回  {分组类型：新增客户数量} list
      */
     @RequestMapping("/report")
     public Result queryPageReport(ExtendsQuery query){
