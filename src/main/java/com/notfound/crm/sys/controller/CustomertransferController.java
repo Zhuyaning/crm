@@ -13,6 +13,7 @@ import com.notfound.crm.sys.form.PotentialcustomerForm;
 import com.notfound.crm.sys.service.ICustomertransferService;
 import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.service.IPotentialcustomerService;
+import com.notfound.crm.sys.vo.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,7 +60,7 @@ public class CustomertransferController {
     @RequestMapping("/insert")
     @ResponseBody
     public Result insert(CustomertransferFrom customertransferFrom, PotentialcustomerForm potentialcustomerForm, Integer id, HttpSession session){
-        Employee curr_user = (Employee) session.getAttribute("CURR_USER");
+        EmployeeVO curr_user = (EmployeeVO) session.getAttribute("CURR_USER");
 
         potentialcustomerForm.setSeller(customertransferFrom.getNewSeller());
 
