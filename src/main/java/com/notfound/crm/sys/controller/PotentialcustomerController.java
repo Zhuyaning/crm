@@ -117,7 +117,7 @@ public class PotentialcustomerController {
 
         //查询到所有跟踪方式
         ExtendsQuery query = new ExtendsQuery();
-        query.setKeyword("1106");
+        query.setTitle("跟踪方式");
         Result result = dictionaryDetailsService.queryPage(query);
         PageInfo data3 = (PageInfo) result.getData();
         List<Object> dataList = data3.getData();//跟踪方式的list
