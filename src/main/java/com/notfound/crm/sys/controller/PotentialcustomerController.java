@@ -10,6 +10,7 @@ import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.service.IPotentialcustomerService;
 import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.sys.vo.EmployeeVO;
+import com.notfound.crm.sys.vo.PotentialcustomerVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,10 +111,9 @@ public class PotentialcustomerController {
     @RequestMapping("/tranceOne")
     public Result tranceOne(Integer id, HttpServletRequest request){
         //先拿到客户名字
-        Result eQuery = iEmployeeService.query(id);
-        System.out.println(eQuery);
-        EmployeeVO employeeVO = (EmployeeVO)eQuery.getData();
-        String name = employeeVO.getName();//客户名字
+        Result eQuery = iPotentialcustomerService.query(id);
+        PotentialcustomerVO potentialcustomerVO = (PotentialcustomerVO) eQuery.getData();
+        String name = potentialcustomerVO.getName();//客户名字
 
         //查询到所有跟踪方式
         ExtendsQuery query = new ExtendsQuery();
