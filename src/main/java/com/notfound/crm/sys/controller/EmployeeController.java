@@ -12,10 +12,12 @@ import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.util.easyexcel.EasyExcelUtil;
 import com.notfound.crm.sys.util.easyexcel.EmployeeReadListener;
 import com.notfound.crm.sys.vo.EmployeeVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -138,6 +140,7 @@ public class EmployeeController implements BeanFactoryAware {
         List<Object> listdata = (List<Object>) result.getData();
 
         EasyExcelUtil<EmployeeVO> excelUtil = new EasyExcelUtil<>();
+
         excelUtil.exportExcel(response, "员工表", EmployeeVO.class, listdata);
     }
 

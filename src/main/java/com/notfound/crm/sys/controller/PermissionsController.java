@@ -5,6 +5,7 @@ import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.PermissionsForm;
 import com.notfound.crm.sys.service.IPermissionsService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class PermissionsController {
     //查询全部权限信息
     @RequestMapping("/queryPagePermissions")
     @ResponseBody
+    @RequiresPermissions("permissions:queryPagePermissions")
     public Result queryPage(Query query){
 
         Result result = permissionsService.queryPage(query);
@@ -44,7 +46,7 @@ public class PermissionsController {
     }
 
     //根据id删除权限信息
-    @RequestMapping("/deleteRole")
+    @RequestMapping("/deletePermissions")
     @ResponseBody
     public Result delete(Integer id){
 

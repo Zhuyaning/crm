@@ -8,6 +8,7 @@ import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.CustomertraceForm;
 import com.notfound.crm.sys.service.ICustomertraceService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,6 +76,7 @@ public class CustomertraceController {
      * @param query
      * @return
      */
+    @RequiresPermissions("customertrace:queryPage")
     @RequestMapping("/queryPage")
     public Result queryPageCustomertrace(ExtendsQuery query){
         ValidatorUtil.validator(query);

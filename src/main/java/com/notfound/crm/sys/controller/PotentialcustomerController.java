@@ -10,6 +10,7 @@ import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.service.IPotentialcustomerService;
 import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.sys.vo.EmployeeVO;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,7 @@ public class PotentialcustomerController {
      * @param query
      * @return
      */
+    @RequiresPermissions("customer:queryPage")
     @RequestMapping("/queryPage")
     public Result queryPage(ExtendsQuery query){
         Result result = iPotentialcustomerService.queryPage(query);
@@ -55,6 +57,7 @@ public class PotentialcustomerController {
      * @param form
      * @return
      */
+    @RequiresPermissions("customer:add")
     @RequestMapping("/add")
     public Result add(PotentialcustomerForm form, HttpSession session){
         ValidatorUtil.validator(form);//验证前端传入数据非空
@@ -73,6 +76,7 @@ public class PotentialcustomerController {
      * @param id
      * @return
      */
+    @RequiresPermissions("customer:delete")
     @RequestMapping("/delete")
     public Result deleteById(Integer id){
         Result result = iPotentialcustomerService.delete(id);
@@ -84,6 +88,7 @@ public class PotentialcustomerController {
      * @param form
      * @return
      */
+    @RequiresPermissions("customer:update")
     @RequestMapping("/update")
     public Result update(PotentialcustomerForm form){
         ValidatorUtil.validator(form);
@@ -111,7 +116,7 @@ public class PotentialcustomerController {
         String name = employeeVO.getName();//客户名字
 
         //查询到所有跟踪方式
-        Query query = new Query();
+        ExtendsQuery query = new ExtendsQuery();
         query.setKeyword("1106");
         Result result = dictionaryDetailsService.queryPage(query);
         PageInfo data3 = (PageInfo) result.getData();
@@ -134,25 +139,23 @@ public class PotentialcustomerController {
 
     @RequestMapping("/transfer")
     public Result transfer(Integer id){
-        System.out.println("==========================================================================================");
-        System.out.println(id);
         //拿到客户名字
         Result  crr_customerResult = iPotentialcustomerService.query(id);
         Potentialcustomer customer = (Potentialcustomer) crr_customerResult.getData();
         String customerName = customer.getName();
-
+        //拿到负责人名字
         String seller = customer.getSeller();
-
+        //拿到员工列表
         Result employees = iEmployeeService.queryPage(new Query());
         PageInfo data = (PageInfo) employees.getData();
         List<Object> objectList = data.getData();
-
+        //封装上述数据
         CustomertraceVOOnly2 customertraceVOOnly2 = new CustomertraceVOOnly2();
         customertraceVOOnly2.setId(id.longValue());
         customertraceVOOnly2.setName(customerName);
         customertraceVOOnly2.setSeller(seller);
         customertraceVOOnly2.setInfo(objectList);
-
+        //封装到统一返回结果
         Result resultFinal = new Result();
         resultFinal.setData(customertraceVOOnly2);
         return resultFinal;
@@ -161,7 +164,7 @@ public class PotentialcustomerController {
     /***
      * 客户新增的报表信息，
      * @param query
-     * @return 返回  {员工名：新增客户数量} list
+     * @return 返回  {分组类型：新增客户数量} list
      */
     @RequestMapping("/report")
     public Result queryPageReport(ExtendsQuery query){

@@ -16,7 +16,10 @@
         from systemdictionaryitem as c inner join systemdictionary as d on c.parent = d.sn
         <where>
             <if test="keyword != null and keyword !=''">
-                c.title LIKE concat('%',#{keyword},'%') or c.parent Like concat('%',#{keyword},'%')
+                c.title Like concat('%',#{keyword},'%')
+            </if>
+            <if test="title != null and title != ''">
+                and d.title = #{title}
             </if>
         </where>
     </select>
