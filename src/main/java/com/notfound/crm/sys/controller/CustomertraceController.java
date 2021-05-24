@@ -63,21 +63,21 @@ public class CustomertraceController {
         //操作时间
         form.setTraceitime(new Date());
         //操作员工,从Session中直接取，在session中为EmployeeVO类型，强制转型成Employee
-        Employee curr_user = (Employee) session.getAttribute("CURR_USER");
+        EmployeeVO curr_user = (EmployeeVO) session.getAttribute("CURR_USER");
 
-//        Employee employee = new Employee();
-//
-//        employee.setAdmin(curr_user.getAdmin());
-//        employee.setAge(curr_user.getAge());
-//        employee.setId(curr_user.getId());
-//        employee.setName(curr_user.getName());
-//        employee.setEmail(curr_user.getEmail());
-//        employee.setDept(curr_user.getDept());
-//        employee.setState(curr_user.getState());
-//        employee.setRoleList(curr_user.getRoleList());
-//        employee.setHiredate(curr_user.getHiredate());
+        Employee employee = new Employee();
 
-        form.setInputuser(curr_user);//封装用户对象
+        employee.setAdmin(curr_user.getAdmin());
+        employee.setAge(curr_user.getAge());
+        employee.setId(curr_user.getId());
+        employee.setName(curr_user.getName());
+        employee.setEmail(curr_user.getEmail());
+        employee.setDept(curr_user.getDept());
+        employee.setState(curr_user.getState());
+        employee.setRoleList(curr_user.getRoleList());
+        employee.setRole(curr_user.getRole());
+        employee.setPassword(curr_user.getPassword());
+        form.setInputuser(employee);//封装用户对象
         form.setCustomerid(customer);//封装客户对象
 
         Result result = iCustomertraceService.add(form);//插入数据
