@@ -29,7 +29,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("customer")
+@RequestMapping("/customer")
 public class PotentialcustomerController {
 
     @Autowired

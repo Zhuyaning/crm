@@ -64,4 +64,11 @@ public interface EmployeeMapper extends BaseMapper<EmployeeForm, EmployeeVO> {
      * @return
      */
     List<EmployeeVO> queryByIdList(@Param("ids") Integer[] ids);
+
+    /**
+     * 根据用户角色id
+     * @param id
+     * @return
+     */
+    List<String> queryPermissionList(Integer id);
 }

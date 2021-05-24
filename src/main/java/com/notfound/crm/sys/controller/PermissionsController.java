@@ -42,7 +42,6 @@ public class PermissionsController {
         Result result = permissionsService.query(id);
 
         return result;
-
     }
 
     //根据id删除权限信息

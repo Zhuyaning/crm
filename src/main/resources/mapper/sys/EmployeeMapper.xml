@@ -230,5 +230,9 @@
         delete from employee_role where eid=#{id}
   </delete>
 
+   <!--    删除员工和角色角色关系表数据-->
+  <select id="queryPermissionList" resultType="java.lang.String">
+        select expression from role_permissions as rp INNER JOIN permissions as p on rp.pid = p.id where rid=#{id}
+  </select>
 
 </mapper>

@@ -8,9 +8,6 @@ import com.notfound.crm.common.service.impl.BaseServiceImpl;
 import com.notfound.crm.sys.form.EmployeeForm;
 import com.notfound.crm.sys.service.IEmployeeService;
 import com.notfound.crm.sys.vo.EmployeeVO;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,9 +46,6 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
         if(data == null){   //查询记过如果为空，则该用户名错误
             return new Result(CodeMsg.LOGIN_FAILD_WRONG_USERNAME);    //登录失败，用户名错误
         }else { //查询结果不为空，证明该用户名正确
-//            Subject subject = SecurityUtils.getSubject();
-//            UsernamePasswordToken token = new UsernamePasswordToken(data.getName(),data.getPassword());
-//            subject.login(token);
 
             //判断该用户名对应的密码是否与数据库中的密码相同，如果相同，那么则允许该用户登录系统，若不相同则返回错误信息
             if(data.getPassword().equals(employeeForm.getPassword())){
@@ -61,8 +55,12 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
                 //校验用户填写的验证码是否正确
                 System.out.println("Session中的验证码："+authCode);
                 if(securityCode.equals(authCode)){
+                    Integer role_id = Integer.parseInt(data.getRole());
+                    List<String> role_list = employeeMapper.queryPermissionList(role_id);
+                    System.out.println("权限列表："+role_list);
                     //将用户信息存储进session
                     request.getSession().setAttribute("CURR_USER",data);
+                    request.getSession().setAttribute("ROLE_LIST",role_list);
 
                     return new Result();    //登录成功
                 }else {
