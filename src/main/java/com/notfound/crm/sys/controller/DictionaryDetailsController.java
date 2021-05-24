@@ -5,6 +5,7 @@ import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.DictionaryDetailsFrom;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
+import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.sys.vo.DictionaryDetailsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +28,15 @@ public class DictionaryDetailsController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Result list(Query query){
+    public Result list(ExtendsQuery query){
         Result list = dictionaryDetailsService.queryPage(query);
+        System.out.println(list);
         return list;
     }
 
     @RequestMapping("/listTitle")
     @ResponseBody
-    public List<DictionaryDetailsVO> listTitle(Query query){
+    public List<DictionaryDetailsVO> listTitle(ExtendsQuery query){
         List<DictionaryDetailsVO> dictionaryDetailsVOS = dictionaryDetailsService.selectDicConTitle(query);
         return dictionaryDetailsVOS;
     }

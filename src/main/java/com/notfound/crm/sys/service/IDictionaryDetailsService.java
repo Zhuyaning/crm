@@ -4,6 +4,7 @@ import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.service.IBaseService;
 import com.notfound.crm.sys.form.DictionaryDetailsFrom;
+import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.sys.vo.DictionaryDetailsVO;
 
 import java.util.List;
@@ -15,5 +16,5 @@ import java.util.List;
  * @Description 字典详细业务层代码
  */
 public interface IDictionaryDetailsService extends IBaseService<DictionaryDetailsFrom> {
-    List<DictionaryDetailsVO> selectDicConTitle(Query query);
+    List<DictionaryDetailsVO> selectDicConTitle(ExtendsQuery query);
 }

@@ -7,6 +7,7 @@ import com.notfound.crm.common.service.impl.BaseServiceImpl;
 import com.notfound.crm.sys.form.DictionaryDetailsFrom;
 import com.notfound.crm.sys.mapper.DictionaryDetailsMapper;
 import com.notfound.crm.sys.service.IDictionaryDetailsService;
+import com.notfound.crm.sys.util.query.ExtendsQuery;
 import com.notfound.crm.sys.vo.DictionaryDetailsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class DictionaryDetailsServiceImpl extends BaseServiceImpl<DictionaryDeta
     }
 
     @Override
-    public List<DictionaryDetailsVO> selectDicConTitle(Query query) {
+    public List<DictionaryDetailsVO> selectDicConTitle(ExtendsQuery query) {
 
         return dictionaryDetailsMapper.selectDicConTitle(query);
     }

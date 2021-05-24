@@ -33,6 +33,15 @@ public class ExtendsQuery extends Query {
      */
     private String groupTypeStr;
 
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Date getStartTime() {
         return startTime;
@@ -72,7 +81,8 @@ public class ExtendsQuery extends Query {
                 "startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", self=" + self +
-                ", deptId=" + groupTypeStr +
+                ", groupTypeStr='" + groupTypeStr + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }
