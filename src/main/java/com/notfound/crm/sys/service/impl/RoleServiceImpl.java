@@ -1,5 +1,6 @@
 package com.notfound.crm.sys.service.impl;
 
+import com.notfound.crm.common.base.Query;
 import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.service.impl.BaseServiceImpl;
 import com.notfound.crm.sys.domain.Permissions;
@@ -7,8 +8,12 @@ import com.notfound.crm.sys.form.RoleForm;
 import com.notfound.crm.sys.mapper.PermissionsMapper;
 import com.notfound.crm.sys.mapper.RoleMapper;
 import com.notfound.crm.sys.service.IRoleService;
+import com.notfound.crm.sys.vo.PermissionsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author Wen
@@ -55,7 +60,9 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleForm> implements IRoleS
         //删除修改的权限名字关系表的所有权限ID
         roleMapper.deleteRoleAndPermissionRelation(roleForm.getId());
         //再添加新的关系表数据
-        for(Permissions permissions :roleForm.getPermissionsList()) {
+        Query query = new Query();
+        List<PermissionsVO> permissionsList = permissionsMapper.selectList(query);
+        for(Permissions permissions :permissionsList) {
             roleMapper.insertRoleAndPermissionRelation(roleForm.getId(), permissions.getId());
         }
         return new Result();
