@@ -3,7 +3,7 @@ package com.notfound.crm.sys.domain;
 
 import com.alibaba.excel.annotation.format.DateTimeFormat;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 

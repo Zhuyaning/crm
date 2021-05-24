@@ -8,6 +8,7 @@ import com.notfound.crm.common.base.Result;
 import com.notfound.crm.common.validator.ValidatorUtil;
 import com.notfound.crm.sys.form.CustomertraceForm;
 import com.notfound.crm.sys.service.ICustomertraceService;
+import com.notfound.crm.sys.vo.EmployeeVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +64,18 @@ public class CustomertraceController {
         form.setTraceitime(new Date());
         //操作员工,从Session中直接取，在session中为EmployeeVO类型，强制转型成Employee
         Employee curr_user = (Employee) session.getAttribute("CURR_USER");
+
+//        Employee employee = new Employee();
+//
+//        employee.setAdmin(curr_user.getAdmin());
+//        employee.setAge(curr_user.getAge());
+//        employee.setId(curr_user.getId());
+//        employee.setName(curr_user.getName());
+//        employee.setEmail(curr_user.getEmail());
+//        employee.setDept(curr_user.getDept());
+//        employee.setState(curr_user.getState());
+//        employee.setRoleList(curr_user.getRoleList());
+//        employee.setHiredate(curr_user.getHiredate());
 
         form.setInputuser(curr_user);//封装用户对象
         form.setCustomerid(customer);//封装客户对象
