@@ -1,6 +1,5 @@
 package com.notfound.crm.sys.service.impl;
 
-import com.notfound.crm.sys.domain.Employee;
 import com.notfound.crm.sys.domain.Role;
 import com.notfound.crm.sys.mapper.EmployeeMapper;
 import com.notfound.crm.common.base.CodeMsg;
@@ -50,7 +49,6 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
         if(data == null){   //查询记过如果为空，则该用户名错误
             return new Result(CodeMsg.LOGIN_FAILD_WRONG_USERNAME);    //登录失败，用户名错误
         }else { //查询结果不为空，证明该用户名正确
-//
 //            Subject subject = SecurityUtils.getSubject();
 //            UsernamePasswordToken token = new UsernamePasswordToken(data.getName(),data.getPassword());
 //            subject.login(token);
@@ -65,6 +63,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
                 if(securityCode.equals(authCode)){
                     //将用户信息存储进session
                     request.getSession().setAttribute("CURR_USER",data);
+
                     return new Result();    //登录成功
                 }else {
                     return new Result(CodeMsg.LOGIN_FAILD_WRONG_AUTHCODE);  //登录失败，验证码错误
@@ -100,7 +99,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<EmployeeForm> implement
     @Override
     public Result deleteByIdList(Integer[] ids) {
         employeeMapper.deleteByIdList(ids);
-        return null;
+        return new Result();
     }
 
     @Override
