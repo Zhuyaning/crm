@@ -7,7 +7,7 @@ package com.notfound.crm.common.base;
  *   Time: 10:40
  */
 
-public class CustomertraceVOOnly2  extends CustomertraceVOOnly{
+public class CustomertraceVOOnly2 extends CustomertraceVOOnly {
     private String seller;
 
     @Override

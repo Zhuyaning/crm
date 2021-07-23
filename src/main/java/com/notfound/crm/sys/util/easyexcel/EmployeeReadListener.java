@@ -26,7 +26,7 @@ public class EmployeeReadListener extends AnalysisEventListener<EmployeeVO> {
 
     @Override
     public void invoke(EmployeeVO data, AnalysisContext context) {
-        System.out.println("调用了Employee的表格导入:"+data);
+        System.out.println("调用了Employee的表格导入:" + data);
         listData.add(data);
     }
 

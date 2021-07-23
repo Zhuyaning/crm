@@ -9,31 +9,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Wan_JiaLin
- * @Create 2021-05-11 11:49
- * @Description:    这里是全局异常处理器
+ * @Create 2021-05-11 11:49l
+ * @Description: 这里是全局异常处理器
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     /**
      * 处理异常
+     *
      * @param exception
      * @return 返回异常信息
      */
     @ExceptionHandler
     @ResponseBody
-    public Result bussiExceptionHandler(Exception exception){
+    public Result bussiExceptionHandler(Exception exception) {
         System.err.println(exception.getMessage());
 
         //判断是否是自定义的业务异常
-        if(exception instanceof SystemException){
+        if (exception instanceof SystemException) {
             SystemException sysTemException = (SystemException) exception;
             Result result = new Result();
             result.setCode(sysTemException.getCode());
             result.setMsg(sysTemException.getMsg());
 
             return result;
-        }else {
+        } else {
             exception.printStackTrace();
         }
         return new Result(CodeMsg.ERROR);
